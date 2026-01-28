@@ -91,7 +91,327 @@
   }(window,document,'script','https://cdn.leadinfo.net/ping.js','leadinfo','LI-6926A32429C8A'));
   </script>
   
-  </head><body><div class="page-wrapper"><div class="global-styles w-embed"><style>
+  
+    <style>
+      /* SaveCustomer Header Styles */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+      
+      .sc-header-outer {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        padding: 0 24px;
+        box-sizing: border-box;
+        width: 100%;
+        pointer-events: none;
+      }
+      
+      .sc-header {
+        max-width: 960px;
+        margin: 0 auto;
+        height: 72px;
+        padding: 0 32px;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #004734, #47bf5d, #81d490);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(16px);
+        color: #ffffff;
+        pointer-events: auto;
+      }
+      
+      .sc-header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .sc-logo {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      
+      .sc-nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      
+      .sc-nav a {
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        opacity: 0.9;
+      }
+      
+      .sc-nav a:hover {
+        opacity: 1;
+      }
+      
+      .sc-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        transition: width 0.2s ease-out;
+      }
+      
+      .sc-nav a:hover::after {
+        width: 100%;
+      }
+      
+      .sc-header-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      
+      .sc-cta {
+        padding: 6px 12px;
+        border-radius: 14px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-image: linear-gradient(
+          135deg,
+          #003023 0%,
+          #20572a 50%,
+          #285741 100%
+        );
+        box-shadow: 0 8px 18px rgba(0, 71, 46, 0.25);
+        transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+          filter 0.15s ease-out;
+      }
+      
+      .sc-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(0, 71, 46, 0.3);
+        filter: brightness(1.03);
+      }
+      
+      .sc-cta:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 12px rgba(0, 71, 46, 0.25);
+      }
+      
+      /* Mobile layout for header pill */
+      @media (max-width: 640px) {
+        .sc-header-outer {
+          top: 16px;
+          padding: 0;
+        }
+
+        .sc-header {
+          max-width: 340px;
+          height: 46px;
+          padding: 0 18px;
+        }
+
+        .sc-logo {
+          height: 16px;
+        }
+
+        .sc-nav {
+          gap: 12px;
+          font-size: 14px;
+        }
+
+        /* Only show Cs Tools in mobile nav */
+        .sc-nav a {
+          display: none;
+        }
+
+        .sc-nav a:nth-child(2) {
+          display: inline-block;
+        }
+
+        .sc-cta {
+          padding: 6px 12px;
+          font-size: 13px;
+          box-shadow: 0 6px 14px rgba(0, 71, 46, 0.25);
+        }
+      }
+      
+      
+      /* Hide old navbar */
+      .navbar.w-nav,
+      .top-nav {
+        display: none !important;
+      }
+
+      /* Content spacing to account for fixed header */
+      body {
+        padding-top: 80px;
+      }
+      
+      /* Extend hero section background upward to cover white space under header */
+      main.main-wrapper > section.bg-cream-secondary:first-child {
+        margin-top: -120px;
+        padding-top: 120px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      /* Ensure the background extends fully */
+      main.main-wrapper > section.bg-cream-secondary:first-child::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background-color: inherit;
+        z-index: -1;
+      }
+      
+      @media (max-width: 640px) {
+        body {
+          padding-top: 72px;
+        }
+        
+        main.main-wrapper > section.bg-cream-secondary:first-child {
+          margin-top: -88px;
+          padding-top: 88px;
+        }
+        
+        main.main-wrapper > section.bg-cream-secondary:first-child::before {
+          height: 88px;
+        }
+      }
+      
+      /* Color replacements */
+      /* Replace #57C46A with #57C46A in headings and texts */
+      [style*="#57C46A"],
+      [style*="#57C46A"],
+      .text-pink-badge,
+      span.text-pink-badge,
+      h1 [style*="#57C46A"],
+      h2 [style*="#57C46A"],
+      h3 [style*="#57C46A"],
+      h4 [style*="#57C46A"],
+      h5 [style*="#57C46A"],
+      h6 [style*="#57C46A"],
+      p [style*="#57C46A"],
+      *[style*="color: #57C46A"],
+      *[style*="color:#57C46A"],
+      *[style*="color: #57C46A"],
+      *[style*="color:#57C46A"] {
+        color: #57C46A !important;
+      }
+      
+      /* Replace #004734 with #004734 */
+      [style*="#004734"],
+      *[style*="color: #004734"],
+      *[style*="color:#004734"],
+      *[style*="background-color: #004734"],
+      *[style*="background-color:#004734"],
+      *[style*="background: #004734"],
+      *[style*="background:#004734"] {
+        color: #004734 !important;
+        background-color: #004734 !important;
+      }
+      
+      /* Replace #530066 CTAs with gradient */
+      .button.w-button,
+      .w-button:not(.is-secondary):not(.is-small),
+      a.button.w-button:not(.is-secondary),
+      *[style*="background-color: #530066"],
+      *[style*="background-color:#530066"],
+      *[style*="background: #530066"],
+      *[style*="background:#530066"],
+      *[style*="background-color: rgb(83, 0, 102)"],
+      *[style*="background-color:rgb(83, 0, 102)"] {
+        background-image: linear-gradient(
+          135deg,
+          #003023 0%,
+          #20572a 50%,
+          #285741 100%
+        ) !important;
+        background-color: transparent !important;
+        color: #ffffff !important;
+      }
+      
+      /* Ensure all primary buttons use the gradient */
+      .button.w-button:not(.is-secondary):not(.is-small),
+      a.button.w-button:not(.is-secondary) {
+        background-image: linear-gradient(
+          135deg,
+          #003023 0%,
+          #20572a 50%,
+          #285741 100%
+        ) !important;
+        background-color: transparent !important;
+        color: #ffffff !important;
+      }
+      
+      /* Ensure all text inside CTA buttons is white */
+      .button.w-button *,
+      .w-button:not(.is-secondary):not(.is-small) *,
+      a.button.w-button:not(.is-secondary) *,
+      .button.w-button::before,
+      .button.w-button::after,
+      .w-button:not(.is-secondary):not(.is-small)::before,
+      .w-button:not(.is-secondary):not(.is-small)::after {
+        color: #ffffff !important;
+      }
+      
+      /* Also target SVG paths and fills with these colors */
+      path[stroke="#57C46A"],
+      path[stroke="#57C46A"],
+      path[fill="#57C46A"],
+      path[fill="#57C46A"] {
+        stroke: #57C46A !important;
+        fill: #57C46A !important;
+      }
+      
+      path[stroke="#004734"],
+      path[fill="#004734"] {
+        stroke: #004734 !important;
+        fill: #004734 !important;
+      }
+    </style>
+
+</head><body>
+
+    <div class="sc-header-outer">
+      <header class="sc-header">
+        <div class="sc-header-left">
+          <img
+            src="assets/Logo_Wide_-_SaveCustomer_-_2.png"
+            alt="SaveCustomer"
+            class="sc-logo"
+          />
+        </div>
+        <nav class="sc-nav" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#cs-tools">Cs Tools</a>
+          <a href="#helpful-content">Helpfull Content</a>
+        </nav>
+        <div class="sc-header-right">
+          <button class="sc-cta" type="button">Book a Meeting</button>
+        </div>
+      </header>
+    </div>
+<div class="page-wrapper"><div class="global-styles w-embed"><style>
   
   /* Make text look crisper and more legible in all browsers */
   body {
@@ -274,7 +594,7 @@
     text-align: center;
   }
   
-  </style></div><div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav"><div class="top-nav"><div class="top-nav-content"><a href="/demo-call" class="top_nav_link w-inline-block"><div class="nav_link is-top-nav">New long term partners get a free shoot worth €4.500 when siging before 14 February 2026!</div></a><div data-w-id="51ca0ee9-10c0-e650-bd9d-409636eccf94" class="top-nav-close"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 12 12" fill="none" class="g_svg absolute"><path d="M11.7071 1.70711C12.0976 1.31658 12.0976 0.683417 11.7071 0.292893C11.3166 -0.0976311 10.6834 -0.0976311 10.2929 0.292893L6 4.58579L1.70711 0.292893C1.31658 -0.0976311 0.683417 -0.0976311 0.292893 0.292893C-0.0976311 0.683417 -0.0976311 1.31658 0.292893 1.70711L4.58579 6L0.292893 10.2929C-0.0976311 10.6834 -0.0976311 11.3166 0.292893 11.7071C0.683417 12.0976 1.31658 12.0976 1.70711 11.7071L6 7.41421L10.2929 11.7071C10.6834 12.0976 11.3166 12.0976 11.7071 11.7071C12.0976 11.3166 12.0976 10.6834 11.7071 10.2929L7.41421 6L11.7071 1.70711Z" fill="currentColor"></path></svg></div></div></div><div class="padding-global nav-padding"><div class="container w-container"><div class="u-hflex-between-stretch"><a href="/" aria-current="page" class="nav_brand w-nav-brand w--current"><img src="https://cdn.prod.website-files.com/68304193fb2c1a32a1eba643/68306c722484030784626c76_EditFlow_Logo_Full_Black.avif" loading="lazy" alt="" class="nav_logo"/></a><nav role="navigation" class="u-hflex-left-stretch nav-menu w-nav-menu"><a href="/" aria-current="page" class="nav_link w-inline-block w--current"><div>Home</div></a><a href="/process" class="nav_link w-inline-block"><div>Process</div></a><a href="/portfolio" class="nav_link w-inline-block"><div>Portfolio</div></a><a href="/about-us" class="nav_link w-inline-block"><div>About Us</div></a><a href="/vault-closed" class="nav_link w-inline-block"><div>EditFlow Vault</div></a><a href="/contact" class="nav_link w-inline-block"><div>Contact</div></a><a href="#" class="button is-small tab-shown w-button">Demo Call</a></nav><div class="u-hflex-right-center u-gap-4 is-nav-mobile"><a scroll="disable" href="/demo-call" class="navbar_icon-link tab-shown is-call w-inline-block"><div class="icon-embed-small"><div class="svg g_svg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"></path></svg></div></div><div class="sr-only">Book Now</div></a><div class="u-hflex-left-center"><div class="language-icon mob-hidden"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M10.761 14.1667H16.7392M10.761 14.1667L9.16675 17.5M10.761 14.1667L13.1487 9.17419C13.3411 8.77189 13.4373 8.57075 13.5689 8.50718C13.6834 8.4519 13.8168 8.4519 13.9313 8.50718C14.0629 8.57075 14.1591 8.77189 14.3515 9.17419L16.7392 14.1667M16.7392 14.1667L18.3334 17.5M1.66675 4.16667H6.66675M6.66675 4.16667H9.58341M6.66675 4.16667V2.5M9.58341 4.16667H11.6667M9.58341 4.16667C9.16997 6.63107 8.21057 8.86349 6.80471 10.737M8.33341 11.6667C7.82298 11.4373 7.30229 11.1184 6.80471 10.737M6.80471 10.737C5.6776 9.87314 4.66905 8.68886 4.16675 7.5M6.80471 10.737C5.46746 12.5191 3.72628 13.9765 1.66675 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="wg-element tab-full margin-small"><div class="wg-element-wrapper sw8"><div data-delay="500" data-hover="true" data-w-id="fee6cfe0-e61c-cb51-404a-636864f3342c" class="wg-dropdown-2 w-dropdown"><div lang="en" class="wg-dd-2-togle w-dropdown-toggle"><div class="wg-selector-text-wrapper"><div class="wg-flag"><img alt="" src="https://cdn.prod.website-files.com/6681b2124a070d63c6015856/6681b2124a070d63c60158ee_gb.svg" class="wg-flag-ico"/></div><div class="mob-hidden">English</div></div></div><nav class="wg-dd-2-list wg-dropdown-link-flag w-dropdown-list"><a lang="nl" href="#" class="wg-dropdown-2-link w-inline-block"><div class="wg-selector-text-wrapper"><div class="wg-flag"><img alt="" src="https://cdn.prod.website-files.com/68304193fb2c1a32a1eba643/6840726650577e1d01f66653_Flag_of_the_Netherlands.svg.avif" class="wg-flag-ico"/></div><div class="mob-hidden">Dutch</div></div></a></nav></div></div></div></div><a href="/demo-call" target="_blank" class="button is-small tab-hidden w-button">Apply for partnership</a><div class="menu-button w-nav-button"><div class="icon w-icon-nav-menu"></div></div></div></div></div></div></div><main class="main-wrapper"><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container z-index-2"><div class="u-vflex-center-top u-gap-6 text-align-center"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">For brands spending over €50k/month on META ads.</div></div><div class="max-width-xxlarge"><h1 class="heading-style-h1">We solve the <span class="text-pink-badge">biggest mistakes</span> of ecom brands in 2025.</h1></div><div class="max-width-medium"><p class="text-size-regular">Most brands scale ad spend before fixing their creatives. We partner with growth-stage ecom brands to deliver performance content that keeps ROAS steady and sales climbing.</p></div><div class="button-group"><a href="/demo-call" target="_blank" class="button w-button">Apply for partnership</a><a href="/portfolio" class="button is-secondary w-button">Browse Our Work</a></div><div slider-duration="1000" loop-mode="true" class="video-testimonial-slider"><div class="slider_main_trim"><div swiper="slider" class="slider_main_cms_wrap swiper w-dyn-list"><div fs-list-element="list" role="list" class="slider_main_cms_list swiper-wrapper w-dyn-items"><div role="listitem" class="swiper-slide is-testimonial-videos w-dyn-item"><div class="image-wrap is-portfolio"><img loading="lazy" src="https://cdn.prod.website-files.com/683347c72a30e9d3095e0df2/687774faabe9c13e7aa22ce3_Screenshot%202025-07-16%20at%2011.46.29.avif" alt="" class="image"/><div class="overlay is-dark"></div><div class="testimonial-play-wrap"><a href="#" class="testimonial-play-btn w-inline-block w-lightbox"><div class="play-button"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 46 47" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.9997 0.73877C10.3483 0.73877 0.0922852 10.9948 0.0922852 23.6462C0.0922852 36.2976 10.3483 46.5536 22.9997 46.5536C35.6511 46.5536 45.9072 36.2976 45.9072 23.6462C45.9072 10.9948 35.6511 0.73877 22.9997 0.73877ZM18.0012 15.558C17.7935 15.8354 17.7935 16.3324 17.7935 17.3263V29.9657C17.7935 30.9596 17.7935 31.4566 18.0012 31.734C18.1822 31.9758 18.4593 32.1271 18.7606 32.1486C19.1063 32.1733 19.5243 31.9046 20.3604 31.3671L30.191 25.0474C30.9165 24.581 31.2793 24.3478 31.4045 24.0513C31.514 23.7922 31.514 23.4998 31.4045 23.2407C31.2793 22.9442 30.9165 22.711 30.191 22.2446L20.3604 15.9249C19.5243 15.3874 19.1063 15.1187 18.7606 15.1434C18.4593 15.1649 18.1822 15.3162 18.0012 15.558Z" fill="currentColor"></path></svg></div><script type="application/json" class="w-json">{
+  </style></div><main class="main-wrapper"><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container z-index-2"><div class="u-vflex-center-top u-gap-6 text-align-center"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">For brands spending over €50k/month on META ads.</div></div><div class="max-width-xxlarge"><h1 class="heading-style-h1">We solve the <span class="text-pink-badge">biggest mistakes</span> of ecom brands in 2025.</h1></div><div class="max-width-medium"><p class="text-size-regular">Most brands scale ad spend before fixing their creatives. We partner with growth-stage ecom brands to deliver performance content that keeps ROAS steady and sales climbing.</p></div><div class="button-group"><a href="/demo-call" target="_blank" class="button w-button">Apply for partnership</a><a href="/portfolio" class="button is-secondary w-button">Browse Our Work</a></div><div slider-duration="1000" loop-mode="true" class="video-testimonial-slider"><div class="slider_main_trim"><div swiper="slider" class="slider_main_cms_wrap swiper w-dyn-list"><div fs-list-element="list" role="list" class="slider_main_cms_list swiper-wrapper w-dyn-items"><div role="listitem" class="swiper-slide is-testimonial-videos w-dyn-item"><div class="image-wrap is-portfolio"><img loading="lazy" src="https://cdn.prod.website-files.com/683347c72a30e9d3095e0df2/687774faabe9c13e7aa22ce3_Screenshot%202025-07-16%20at%2011.46.29.avif" alt="" class="image"/><div class="overlay is-dark"></div><div class="testimonial-play-wrap"><a href="#" class="testimonial-play-btn w-inline-block w-lightbox"><div class="play-button"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 46 47" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22.9997 0.73877C10.3483 0.73877 0.0922852 10.9948 0.0922852 23.6462C0.0922852 36.2976 10.3483 46.5536 22.9997 46.5536C35.6511 46.5536 45.9072 36.2976 45.9072 23.6462C45.9072 10.9948 35.6511 0.73877 22.9997 0.73877ZM18.0012 15.558C17.7935 15.8354 17.7935 16.3324 17.7935 17.3263V29.9657C17.7935 30.9596 17.7935 31.4566 18.0012 31.734C18.1822 31.9758 18.4593 32.1271 18.7606 32.1486C19.1063 32.1733 19.5243 31.9046 20.3604 31.3671L30.191 25.0474C30.9165 24.581 31.2793 24.3478 31.4045 24.0513C31.514 23.7922 31.514 23.4998 31.4045 23.2407C31.2793 22.9442 30.9165 22.711 30.191 22.2446L20.3604 15.9249C19.5243 15.3874 19.1063 15.1187 18.7606 15.1434C18.4593 15.1649 18.1822 15.3162 18.0012 15.558Z" fill="currentColor"></path></svg></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://player.vimeo.com/video/1101810038",
@@ -1073,7 +1393,7 @@
   .wf-design-mode .accordion_1_content_wrap {
     display: block;
   }
-  </style></div><div class="accordion_1cms_list u-vflex-stretch-top u-gap-2"><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#D757F5" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">1. Unaware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#d757f5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#210029"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re unaware they have a problem, often attributing their issues to something else or not recognizing the root cause, making them less receptive to marketing until awareness is triggered.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
+  </style></div><div class="accordion_1cms_list u-vflex-stretch-top u-gap-2"><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#57C46A" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">1. Unaware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#57C46A"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#004734"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re unaware they have a problem, often attributing their issues to something else or not recognizing the root cause, making them less receptive to marketing until awareness is triggered.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://vimeo.com/1037587125",
@@ -1086,7 +1406,7 @@
       }
     ],
     "group": ""
-  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#D757F5" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">2. Problem-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#d757f5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#210029"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re beginning to realize there’s a problem but aren’t sure what it is, why it’s happening, or how to solve it, leading to frustration and seeking information.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
+  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#57C46A" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">2. Problem-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#57C46A"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#004734"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re beginning to realize there’s a problem but aren’t sure what it is, why it’s happening, or how to solve it, leading to frustration and seeking information.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://vimeo.com/1090795285",
@@ -1099,7 +1419,7 @@
       }
     ],
     "group": ""
-  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#D757F5" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">3. Solution-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#d757f5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#210029"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They know that solutions exist in the market, but they haven’t connected the dots to your specific product or service yet, leaving them open to exploring their options.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
+  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#57C46A" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">3. Solution-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#57C46A"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#004734"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They know that solutions exist in the market, but they haven’t connected the dots to your specific product or service yet, leaving them open to exploring their options.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://vimeo.com/1090796434",
@@ -1112,7 +1432,7 @@
       }
     ],
     "group": ""
-  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#D757F5" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">4. Product-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#d757f5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#210029"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re aware of your brand and its offerings but are comparing it to other competitors, evaluating the benefits, pricing, and trustworthiness before making a decision.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
+  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#57C46A" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">4. Product-Aware</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#57C46A"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#004734"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They’re aware of your brand and its offerings but are comparing it to other competitors, evaluating the benefits, pricing, and trustworthiness before making a decision.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://vimeo.com/1090797015",
@@ -1125,7 +1445,7 @@
       }
     ],
     "group": ""
-  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#D757F5" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">5. High Awareness</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#d757f5"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#210029"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They already trust your brand, have purchased before, or are eager fans; they just need a compelling reason or offer to take action again.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
+  }</script></a></div></div></div></div></div></div><div class="accordion_1_cms_item is-homework"><div class="accordion_1_component is-homework"><h3 class="accordion_1_toggle_heading"><button aria-expanded="false" class="accordion_1_toggle_button is-faq"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#DD3B00" stroke-opacity="0.15" stroke-width="4"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" fill="none" class="question_icon-svg is-cover"><path d="M12 2C13.8333 2 15.6313 2.50397 17.1975 3.45683C18.7637 4.40969 20.0379 5.77476 20.8807 7.40284C21.7235 9.03093 22.1025 10.8594 21.9763 12.6883C21.8501 14.5173 21.2236 16.2763 20.1652 17.7732C19.1068 19.2701 17.6572 20.4473 15.975 21.176C14.2928 21.9048 12.4426 22.157 10.6266 21.9052C8.81072 21.6535 7.09895 20.9073 5.67844 19.7484C4.25793 18.5895 3.18334 17.0624 2.57213 15.334" stroke="#57C46A" stroke-width="4"></path></svg></div><span class="accordion_1_toggle_text homework-question">5. High Awareness</span></div><span class="accordion_1_toggle_icon is-plus-minus"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-minus"><rect width="34" height="34" fill="transparent"></rect><path d="M10 16H24V18H10V16Z" fill="#57C46A"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 34 34" fill="none" class="accordion_1_toggle_svg is-plus"><rect width="34" height="34" fill="transparent"></rect><path d="M24 16H18V10H16V16H10V18H16V24H18V18H24V16Z" fill="#004734"></path></svg></span></button></h3><div class="accordion_1_content_wrap"><div class="accordion_1_content_padding is-faq"><div class="u-vflex-stretch-top u-gap-4"><div class="u-hflex-left-center u-gap-4"><div class="question_icon"></div><div class="accordion_1_content_text u-text-style-main w-richtext"><p>They already trust your brand, have purchased before, or are eager fans; they just need a compelling reason or offer to take action again.</p></div></div><div class="u-hflex-left-top"><a href="#" class="accordion-video-lightbox w-inline-block w-lightbox"><div class="watch-video-link"><div class="watch-video-play"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 32 32" fill="none" class="g_svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.33301C7.89986 1.33301 1.33337 7.8995 1.33337 15.9997C1.33337 24.0998 7.89986 30.6663 16 30.6663C24.1002 30.6663 30.6667 24.0998 30.6667 15.9997C30.6667 7.8995 24.1002 1.33301 16 1.33301ZM12.7997 10.8211C12.6667 10.9988 12.6667 11.3169 12.6667 11.9533V20.0458C12.6667 20.6822 12.6667 21.0003 12.7997 21.178C12.9156 21.3328 13.093 21.4296 13.2859 21.4434C13.5072 21.4592 13.7749 21.2872 14.3102 20.943L20.6043 16.8968C21.0688 16.5982 21.3011 16.4489 21.3813 16.259C21.4514 16.0931 21.4514 15.906 21.3813 15.7401C21.3011 15.5502 21.0688 15.4009 20.6043 15.1023L14.3102 11.0561C13.7749 10.7119 13.5072 10.5399 13.2859 10.5557C13.093 10.5695 12.9156 10.6663 12.7997 10.8211Z" fill="currentColor"></path></svg></div><div class="watch-video-text">Watch Video</div></div><script type="application/json" class="w-json">{
     "items": [
       {
         "url": "https://vimeo.com/1090797935",
@@ -1342,19 +1662,21 @@
     });
   </script>
   
+  <!-- Old navbar JavaScript removed - navbar no longer exists -->
   <script>
-    const topNav = document.querySelector(".top-nav-content");
-    if (sessionStorage.getItem("hide-nav-banner") === "true") {
-     topNav.classList.add("hide-nav-banner");
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-       document.querySelectorAll(".top-nav-close").forEach((button) => {
-         button.addEventListener("click", function () {
-            sessionStorage.setItem("hide-nav-banner", "true");
-             topNav.classList.add("hide-nav-banner");
-         });
-       });
-    });
+    // Old navbar removed - this code is no longer needed
+    // const topNav = document.querySelector(".top-nav-content");
+    // if (sessionStorage.getItem("hide-nav-banner") === "true") {
+    //  topNav.classList.add("hide-nav-banner");
+    // }
+    // document.addEventListener("DOMContentLoaded", function () {
+    //    document.querySelectorAll(".top-nav-close").forEach((button) => {
+    //      button.addEventListener("click", function () {
+    //         sessionStorage.setItem("hide-nav-banner", "true");
+    //          topNav.classList.add("hide-nav-banner");
+    //      });
+    //    });
+    // });
   </script>
   
   <script>
@@ -1428,6 +1750,56 @@
             $activeLangLink.setAttribute('lang', toggleLang);
           }
         }
+  </script>
+  
+  <script>
+    // Color replacement script - Replace colors dynamically
+    (function() {
+      function replaceColors() {
+        // Replace #D757F5 with #57C46A in SVG paths
+        document.querySelectorAll('path[stroke="#D757F5"], path[stroke="#d757f5"], path[fill="#D757F5"], path[fill="#d757f5"]').forEach(function(el) {
+          if (el.getAttribute('stroke')) el.setAttribute('stroke', '#57C46A');
+          if (el.getAttribute('fill')) el.setAttribute('fill', '#57C46A');
+        });
+        
+        // Replace #004734 with #004734 in SVG paths
+        document.querySelectorAll('path[stroke="#004734"], path[fill="#004734"]').forEach(function(el) {
+          if (el.getAttribute('stroke')) el.setAttribute('stroke', '#004734');
+          if (el.getAttribute('fill')) el.setAttribute('fill', '#004734');
+        });
+        
+        // Replace #530066 buttons with gradient and ensure white text
+        document.querySelectorAll('.button.w-button, .w-button, a.button').forEach(function(btn) {
+          var style = window.getComputedStyle(btn);
+          var bgColor = style.backgroundColor || style.background;
+          if (bgColor && (bgColor.includes('#530066') || bgColor.includes('rgb(83, 0, 102)'))) {
+            btn.style.backgroundImage = 'linear-gradient(135deg, #003023 0%, #20572a 50%, #285741 100%)';
+            btn.style.backgroundColor = 'transparent';
+            btn.style.color = '#ffffff';
+          }
+          // Also ensure all primary buttons have white text
+          if (!btn.classList.contains('is-secondary') && !btn.classList.contains('is-small')) {
+            btn.style.color = '#ffffff';
+            // Set text color for all child elements
+            var children = btn.querySelectorAll('*');
+            children.forEach(function(child) {
+              child.style.color = '#ffffff';
+            });
+          }
+        });
+      }
+      
+      // Run on DOMContentLoaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', replaceColors);
+      } else {
+        replaceColors();
+      }
+      
+      // Run after a short delay to catch dynamically loaded content
+      setTimeout(replaceColors, 500);
+      setTimeout(replaceColors, 1000);
+    })();
   </script>
   
   </body></html>
