@@ -218,7 +218,7 @@
       </div>
 
       <div class="sc-content">
-        <iframe id="reference-frame" src="assets/reference.html"></iframe>
+        <iframe id="reference-frame" src="/assets/reference.html"></iframe>
       </div>
     </div>
 
@@ -227,7 +227,20 @@
         var iframe = document.getElementById("reference-frame");
         if (!iframe) return;
 
+        // Add error handling for iframe loading
+        iframe.addEventListener("error", function (e) {
+          console.error("Iframe failed to load:", e);
+          iframe.style.border = "2px solid red";
+          iframe.style.backgroundColor = "#fff";
+          iframe.contentDocument.body.innerHTML = 
+            "<div style='padding: 20px; text-align: center; color: red;'>" +
+            "<h2>Failed to load content</h2>" +
+            "<p>Please check the browser console for details.</p>" +
+            "</div>";
+        });
+
         iframe.addEventListener("load", function () {
+          console.log("Iframe loaded successfully");
           try {
             var doc =
               iframe.contentDocument || iframe.contentWindow.document;
