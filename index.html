@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SaveCustomer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="Logo_Icon_-_SaveCustomer_-_2.png"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="Logo_Icon_-_SaveCustomer_-_2.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      href="Logo_Icon_-_SaveCustomer_-_2.png"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        overflow: hidden;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        /* Match the hero/banner background color so the space
+           under the header blends into the banner area */
+        background-color: #fffad2;
+      }
+      .sc-shell {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #fffad2;
+      }
+      .sc-header-outer {
+        position: fixed;
+        top: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        padding: 0 24px;
+        box-sizing: border-box;
+        width: 100%;
+        pointer-events: none; /* only the pill is interactive */
+      }
+      .sc-header {
+        max-width: 960px;
+        margin: 0 auto;
+        height: 72px;
+        padding: 0 32px;
+        border-radius: 999px;
+        background: linear-gradient(120deg, #004734, #47bf5d, #81d490);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(16px);
+        color: #ffffff;
+        pointer-events: auto;
+      }
+      .sc-header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .sc-logo {
+        height: 28px;
+        width: auto;
+        display: block;
+      }
+      .sc-nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .sc-nav a {
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        opacity: 0.9;
+      }
+      .sc-nav a:hover {
+        opacity: 1;
+      }
+      .sc-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        transition: width 0.2s ease-out;
+      }
+      .sc-nav a:hover::after {
+        width: 100%;
+      }
+      .sc-header-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .sc-cta {
+        padding: 6px 12px;
+        border-radius: 14px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        background-image: linear-gradient(
+          135deg,
+          #003023 0%,
+          #20572a 50%,
+          #285741 100%
+        );
+        box-shadow: 0 8px 18px rgba(0, 71, 46, 0.25);
+        transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+          filter 0.15s ease-out;
+      }
+      .sc-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(0, 71, 46, 0.3);
+        filter: brightness(1.03);
+      }
+      .sc-cta:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 12px rgba(0, 71, 46, 0.25);
+      }
+      .sc-content {
+        flex: 1;
+        /* Push hero content slightly down so it isn't hidden
+           behind the pill header sitting over the banner */
+        margin-top: 80px;
+      }
+      .sc-content iframe {
+        border: none;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Mobile layout for header pill */
+      @media (max-width: 640px) {
+        .sc-header-outer {
+          top: 16px;
+          padding: 0;
+        }
+
+        .sc-header {
+          max-width: 340px;
+          height: 46px;
+          padding: 0 18px;
+        }
+
+        .sc-logo {
+          height: 16px;
+        }
+
+        .sc-nav {
+          gap: 12px;
+          font-size: 14px;
+        }
+
+        /* Only show Cs Tools in mobile nav */
+        .sc-nav a {
+          display: none;
+        }
+
+        .sc-nav a:nth-child(2) {
+          display: inline-block;
+        }
+
+        .sc-cta {
+          padding: 6px 12px;
+          font-size: 13px;
+          box-shadow: 0 6px 14px rgba(0, 71, 46, 0.25);
+        }
+
+        .sc-content {
+          margin-top: 72px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sc-shell">
+      <div class="sc-header-outer">
+        <header class="sc-header">
+          <div class="sc-header-left">
+            <img
+              src="Logo_Wide_-_SaveCustomer_-_2.png"
+              alt="SaveCustomer"
+              class="sc-logo"
+            />
+          </div>
+          <nav class="sc-nav" aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#cs-tools">Cs Tools</a>
+            <a href="#helpful-content">Helpfull Content</a>
+          </nav>
+          <div class="sc-header-right">
+            <button class="sc-cta" type="button">Book a Meeting</button>
+          </div>
+        </header>
+      </div>
+
+      <div class="sc-content">
+        <iframe id="reference-frame" src="reference.html"></iframe>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var iframe = document.getElementById("reference-frame");
+        if (!iframe) return;
+
+        iframe.addEventListener("load", function () {
+          try {
+            var doc =
+              iframe.contentDocument || iframe.contentWindow.document;
+            if (!doc) return;
+
+            // Replace all logo images from the reference site
+            var logoSelectors = [
+              'img[src*="Logo%20(14)"]',
+              'img[src*=\"Logo%20(13)\"]',
+              'img[alt*=\"Editflow\"]',
+              'img[alt*=\"EditFlow\"]'
+            ];
+
+            var logos = [];
+            logoSelectors.forEach(function (sel) {
+              doc.querySelectorAll(sel).forEach(function (el) {
+                if (logos.indexOf(el) === -1) logos.push(el);
+              });
+            });
+
+            logos.forEach(function (img) {
+              img.src = "Logo_Wide_-_SaveCustomer_-_2.png";
+              img.srcset = "";
+              img.removeAttribute("srcset");
+              img.alt = "SaveCustomer";
+            });
+
+            // Hide the announcement / promo bar
+            var topNav = doc.querySelector(".top-nav");
+            if (topNav) {
+              topNav.style.display = "none";
+            }
+
+            // Hide original navbar (we use our own in SaveCustomer shell)
+            var originalNavbar = doc.querySelector(".navbar.w-nav");
+            if (originalNavbar) {
+              originalNavbar.style.display = "none";
+            }
+
+            // Change hero heading text
+            var heroHeading = doc.querySelector("h1.heading-style-h1");
+            if (heroHeading) {
+              heroHeading.textContent =
+                "E-Com Customer Support That Pays For Itself";
+            }
+
+            // Change hero sub-heading text
+            var heroSub = doc.querySelector(
+              ".max-width-medium .text-size-regular"
+            );
+            if (heroSub) {
+              heroSub.textContent =
+                "We take over your inbox with real human agents and a superb revenue support system. We talk in your brand voice, resolve issues fast, and turn conversations into retained revenue. We are actually Revenue Partners, Not Another CS Vendor...";
+            }
+
+            // Override all purple CTA buttons from the template
+            // to use the SaveCustomer green gradient
+            var style = doc.createElement("style");
+            style.textContent = `
+              a.button.w-button,
+              .button.w-button,
+              .w-button {
+                background-image: linear-gradient(
+                  135deg,
+                  #003023 0%,
+                  #20572a 50%,
+                  #285741 100%
+                ) !important;
+                background-color: transparent !important;
+                border-radius: 14px !important;
+                color: #ffffff !important;
+              }
+
+              a.button.w-button *,
+              .button.w-button *,
+              .w-button * {
+                color: #ffffff !important;
+              }
+
+              /* Replace purple accent text (#D757F5) with green #4ABF5F */
+              .text-pink-badge,
+              [style*="#D757F5"],
+              [style*="#d757f5"] {
+                color: #4ABF5F !important;
+              }
+
+              /* Make general text use SaveCustomer dark green instead of purple */
+              body,
+              p,
+              .paragraph,
+              h1,
+              h2,
+              h3,
+              h4,
+              h5,
+              h6,
+              .heading-style-h1,
+              .heading-style-h2,
+              .heading-style-h3,
+              .heading-style-h4,
+              .heading-style-h5,
+              .heading-style-h6 {
+                color: #004734 !important;
+              }
+
+              /* Keep green accent text color as-is (overrides the general rule) */
+              .text-pink-badge {
+                color: #4ABF5F !important;
+              }
+
+              /* Microcopy under primary CTA */
+              .sc-hero-microcopy {
+                margin-top: 8px;
+                font-size: 12px;
+                line-height: 1.5;
+                color: #004734;
+                opacity: 0.9;
+                flex-basis: 100%;
+                text-align: center;
+              }
+
+              /* Special styling for primary hero CTA */
+              a.button.w-button.savecustomer-primary-cta {
+                background-image: none !important;
+                background-color: #c1f7c9 !important;
+                color: #004734 !important;
+                border-radius: 14px !important;
+              }
+
+              /* Center hero button group and place microcopy under both buttons */
+              section.section.bg-cream-secondary .button-group {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 12px;
+                text-align: center;
+              }
+            `;
+            doc.head.appendChild(style);
+
+            // Customize hero CTA buttons
+            var heroButtons = doc.querySelectorAll(
+              "section.section.bg-cream-secondary .button-group .button.w-button"
+            );
+            if (heroButtons && heroButtons.length > 0) {
+              var primaryCta = heroButtons[0];
+              primaryCta.textContent = "Do the Revenue Leak Audit";
+              primaryCta.classList.add("savecustomer-primary-cta");
+
+              // Add microcopy under the primary CTA if not already present
+              if (!doc.querySelector(".sc-hero-microcopy")) {
+                var micro = doc.createElement("div");
+                micro.className = "sc-hero-microcopy";
+                micro.textContent =
+                  "3 minutes. Get a score, your biggest leaks, and a 7 day fix plan.";
+                primaryCta.parentNode.appendChild(micro);
+              }
+            }
+
+            // Replace all brand accent color #D757F5 with #4BC060
+            doc
+              .querySelectorAll(
+                'path[stroke="#D757F5"], path[stroke="#d757f5"], path[fill="#D757F5"], path[fill="#d757f5"]'
+              )
+              .forEach(function (el) {
+                if (el.getAttribute("stroke")) {
+                  el.setAttribute("stroke", "#4BC060");
+                }
+                if (el.getAttribute("fill")) {
+                  el.setAttribute("fill", "#4BC060");
+                }
+              });
+
+          } catch (e) {
+            // If we can't access the iframe (e.g. browser security),
+            // just fail silently and keep the original logos.
+            console.warn("Could not update logo in iframe:", e);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
