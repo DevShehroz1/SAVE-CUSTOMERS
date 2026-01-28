@@ -375,6 +375,22 @@
         color: #ffffff !important;
       }
       
+      /* Second CTA button (Browse Our Work) - Green color */
+      .button.is-secondary.w-button,
+      a.button.is-secondary.w-button,
+      .w-button.is-secondary {
+        background-color: #5CC771 !important;
+        background-image: none !important;
+        color: #ffffff !important;
+      }
+      
+      /* Ensure text inside second CTA is white */
+      .button.is-secondary.w-button *,
+      a.button.is-secondary.w-button *,
+      .w-button.is-secondary * {
+        color: #ffffff !important;
+      }
+      
       /* Also target SVG paths and fills with these colors */
       path[stroke="#57C46A"],
       path[stroke="#57C46A"],
@@ -1780,6 +1796,17 @@
           }
           // Also ensure all primary buttons have white text
           if (!btn.classList.contains('is-secondary') && !btn.classList.contains('is-small')) {
+            btn.style.color = '#ffffff';
+            // Set text color for all child elements
+            var children = btn.querySelectorAll('*');
+            children.forEach(function(child) {
+              child.style.color = '#ffffff';
+            });
+          }
+          // Set second CTA (Browse Our Work) to #5CC771
+          if (btn.classList.contains('is-secondary')) {
+            btn.style.backgroundColor = '#5CC771';
+            btn.style.backgroundImage = 'none';
             btn.style.color = '#ffffff';
             // Set text color for all child elements
             var children = btn.querySelectorAll('*');
