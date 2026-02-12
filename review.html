@@ -1,0 +1,912 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    
+    /* Hide section edit (wrench/tools) button in theme customizer */
+    #shopify-section-{{ sid }} .shopify-section__edit,
+    #shopify-section-{{ sid }} .t4s-section-edit,
+    #shopify-section-{{ sid }} [data-shopify-section-editor],
+    #shopify-section-{{ sid }} button[aria-label*="Edit"],
+    .trust-section + [class*="edit"] {
+      display: none !important;
+    }
+    
+    .trust-section {
+      width: 100%;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8faff 50%, #ffffff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .trust-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+  
+    .trust-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .trust-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000000;
+      margin: 0 0 32px 0;
+      line-height: 1.2;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-title-highlight {
+      background: linear-gradient(135deg, #1fc18c 0%, #5ea5f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  
+    .trust-stats {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      padding: 20px 40px;
+      background: #ffffff;
+      border-radius: 10px;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(94, 165, 247, 0.08);
+      animation: fadeInUp 0.85s ease 0.1s both;
+      border: 1px solid #E5E7EB;
+    }
+  
+    .trust-rating {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  
+    .trust-score {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1fc18c 0%, #5ea5f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-stars {
+      display: flex;
+      gap: 3px;
+      position: relative;
+    }
+  
+    .trust-stars-bg {
+      display: flex;
+      gap: 3px;
+    }
+  
+    .trust-stars-fill {
+      display: flex;
+      gap: 3px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 92%;
+      overflow: hidden;
+    }
+  
+    .trust-star {
+      width: 28px;
+      height: 28px;
+      position: relative;
+    }
+  
+    .trust-star svg {
+      width: 100%;
+      height: 100%;
+    }
+  
+    .trust-stars-bg .trust-star {
+      color: #E5E7EB;
+      fill: #E5E7EB;
+    }
+  
+    .trust-stars-fill .trust-star {
+      color: #5ea5f7;
+    }
+    .trust-stars-fill .trust-star svg {
+      fill: url(#trustGrad-{{ sid }});
+    }
+  
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(94, 165, 247, 0.08);
+      border: 1px solid #E5E7EB;
+    }
+  
+    .trust-badge-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #000000;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-badge-stars {
+      width: 20px;
+      height: 20px;
+      fill: url(#trustGrad-{{ sid }});
+    }
+  
+    .trust-badge-text {
+      font-size: 13px;
+      font-weight: 400;
+      color: #6B7280;
+      border-left: 1px solid #E5E7EB;
+      padding-left: 12px;
+      margin-left: 4px;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-carousel-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+  
+    .trust-carousel-mask {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding: 4px 0;
+    }
+  
+    .trust-carousel-mask::before,
+    .trust-carousel-mask::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+  
+    .trust-carousel-mask::before {
+      left: 0;
+      background: linear-gradient(to right, #ffffff, transparent);
+    }
+  
+    .trust-carousel-mask::after {
+      right: 0;
+      background: linear-gradient(to left, #ffffff, transparent);
+    }
+  
+    .trust-carousel-track {
+      display: flex;
+      animation: scrollInfinite 15s linear infinite;
+      will-change: transform;
+    }
+  
+    .trust-carousel-track:hover {
+      animation-play-state: paused;
+    }
+  
+    @keyframes scrollInfinite {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  
+    .trust-review-group {
+      display: flex;
+      gap: 24px;
+      padding-right: 24px;
+    }
+  
+    .trust-review {
+      flex: 0 0 380px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(94, 165, 247, 0.08);
+      transition: all 0.3s ease;
+      cursor: default;
+      position: relative;
+      border: 1px solid #E5E7EB;
+    }
+  
+    .trust-review:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(94, 165, 247, 0.12);
+      border: 1px solid transparent;
+      border-image: linear-gradient(135deg, #1fc18c, #5ea5f7) 1;
+    }
+  
+    .trust-review-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+  
+    .trust-review-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+  
+    .trust-review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(31, 193, 140, 0.25), rgba(94, 165, 247, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #0d47a1;
+      flex-shrink: 0;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+  
+    .trust-review-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-country {
+      font-size: 13px;
+      color: #6B7280;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-flag {
+      font-size: 14px;
+      line-height: 1;
+    }
+  
+    .trust-verified {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #1fc18c 0%, #5ea5f7 100%);
+      border-radius: 50%;
+      color: white;
+      flex-shrink: 0;
+    }
+  
+    .trust-verified svg {
+      width: 14px;
+      height: 14px;
+    }
+  
+    .trust-review-rating {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 12px;
+    }
+  
+    .trust-review-star {
+      width: 19px;
+      height: 19px;
+    }
+  
+    .trust-review-star svg {
+      width: 100%;
+      height: 100%;
+      fill: url(#trustGrad-{{ sid }});
+    }
+  
+    .trust-review-star.empty svg {
+      color: #E5E7EB;
+      fill: #E5E7EB;
+    }
+  
+    .trust-review-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #6B7280;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 60px;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid #E5E7EB;
+    }
+  
+    .trust-review-date {
+      font-size: 12px;
+      color: #6B7280;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-helpful {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #6B7280;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  
+    .trust-review-helpful:hover {
+      background: linear-gradient(135deg, #1fc18c 0%, #5ea5f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+  
+    .trust-review-helpful svg {
+      width: 14px;
+      height: 14px;
+    }
+  
+    @media (max-width: 1024px) {
+      .trust-container {
+        padding: 0 24px;
+      }
+    
+      .trust-review {
+        flex: 0 0 340px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .trust-section {
+        padding: 60px 16px;
+      }
+    
+      .trust-container {
+        padding: 0 16px;
+      }
+    
+      .trust-header {
+        margin-bottom: 48px;
+      }
+    
+      .trust-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+      }
+    
+      .trust-stats {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+        width: 100%;
+        border-radius: 10px;
+      }
+    
+      .trust-score {
+        font-size: 32px;
+      }
+    
+      .trust-star {
+        width: 24px;
+        height: 24px;
+      }
+    
+      .trust-badge {
+        width: 100%;
+        justify-content: center;
+      }
+    
+      .trust-carousel-mask::before,
+      .trust-carousel-mask::after {
+        width: 40px;
+      }
+    
+      .trust-review {
+        flex: 0 0 300px;
+      }
+    
+      .trust-review-group {
+        gap: 16px;
+        padding-right: 16px;
+      }
+    
+      .trust-carousel-track {
+        animation-duration: 12s;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .trust-review {
+        flex: 0 0 280px;
+        padding: 20px;
+      }
+    
+      .trust-review-text {
+        font-size: 13px;
+      }
+    }
+  
+    @media (prefers-reduced-motion: reduce) {
+      .trust-carousel-track {
+        animation: none;
+      }
+    }
+  </style>
+  
+  {%- liquid
+    assign sid = section.id
+    assign se_stts = section.settings
+    assign se_blocks = section.blocks
+  -%}
+  
+  <svg style="position:absolute;width:0;height:0" aria-hidden="true"><defs><linearGradient id="trustGrad-{{ sid }}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1fc18c"/><stop offset="100%" stop-color="#5ea5f7"/></linearGradient></defs></svg>
+  <section class="trust-section t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }}" {% render 'section_style', se_stts: se_stts %} data-section-id="{{ sid }}">
+    <div class="trust-container">
+      
+      <div class="trust-header">
+        <h2 class="trust-title">
+          {% if se_stts.heading != blank %}
+            {{ se_stts.heading | replace: '[highlight]', '<span class="trust-title-highlight">' | replace: '[/highlight]', '</span>' }}
+          {% else %}
+            Trusted by <span class="trust-title-highlight">100,000+ travelers</span> worldwide
+          {% endif %}
+        </h2>
+      </div>
+      
+      {% if se_blocks.size > 0 %}
+        <div class="trust-carousel-wrapper">
+          <div class="trust-carousel-mask">
+            <div class="trust-carousel-track" id="trust-carousel-{{ sid }}">
+              
+              <div class="trust-review-group">
+                {% for block in se_blocks %}
+                  <div class="trust-review" {{ block.shopify_attributes }}>
+                    <div class="trust-review-header">
+                      <div class="trust-review-author">
+                        <div class="trust-review-avatar">
+                          {% if block.settings.avatar_initials != blank %}
+                            {{ block.settings.avatar_initials }}
+                          {% else %}
+                            {{ block.settings.author_name | slice: 0, 2 | upcase }}
+                          {% endif %}
+                        </div>
+                        <div class="trust-review-info">
+                          <div class="trust-review-name">
+                            {{ block.settings.author_name }}
+                            {% if block.settings.verified %}
+                              <div class="trust-verified" title="Verified Purchase">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                          </div>
+                          <div class="trust-review-country">
+                            {% if block.settings.country_flag != blank %}
+                              <span class="trust-review-flag">{{ block.settings.country_flag }}</span>
+                            {% endif %}
+                            {{ block.settings.country }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="trust-review-rating">
+                      {% assign rating = block.settings.rating | default: 5 %}
+                      {% for i in (1..5) %}
+                        <div class="trust-review-star{% if i > rating %} empty{% endif %}">
+                          <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    
+                    <p class="trust-review-text">
+                      {{ block.settings.review_text }}
+                    </p>
+                    
+                    <div class="trust-review-footer">
+                      <span class="trust-review-date">{{ block.settings.review_date }}</span>
+                      <span class="trust-review-helpful">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        Helpful
+                      </span>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              
+              <div class="trust-review-group">
+                {% for block in se_blocks %}
+                  <div class="trust-review">
+                    <div class="trust-review-header">
+                      <div class="trust-review-author">
+                        <div class="trust-review-avatar">
+                          {% if block.settings.avatar_initials != blank %}
+                            {{ block.settings.avatar_initials }}
+                          {% else %}
+                            {{ block.settings.author_name | slice: 0, 2 | upcase }}
+                          {% endif %}
+                        </div>
+                        <div class="trust-review-info">
+                          <div class="trust-review-name">
+                            {{ block.settings.author_name }}
+                            {% if block.settings.verified %}
+                              <div class="trust-verified" title="Verified Purchase">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                              </div>
+                            {% endif %}
+                          </div>
+                          <div class="trust-review-country">
+                            {% if block.settings.country_flag != blank %}
+                              <span class="trust-review-flag">{{ block.settings.country_flag }}</span>
+                            {% endif %}
+                            {{ block.settings.country }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="trust-review-rating">
+                      {% assign rating = block.settings.rating | default: 5 %}
+                      {% for i in (1..5) %}
+                        <div class="trust-review-star{% if i > rating %} empty{% endif %}">
+                          <svg viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    
+                    <p class="trust-review-text">
+                      {{ block.settings.review_text }}
+                    </p>
+                    
+                    <div class="trust-review-footer">
+                      <span class="trust-review-date">{{ block.settings.review_date }}</span>
+                      <span class="trust-review-helpful">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                        Helpful
+                      </span>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+    </div>
+  </section>
+  
+  <script>
+  (function() {
+    'use strict';
+    
+    const sectionId = '{{ sid }}';
+    const track = document.getElementById('trust-carousel-' + sectionId);
+    
+    if (!track) return;
+    
+    document.addEventListener('visibilitychange', function() {
+      if (track) {
+        if (document.hidden) {
+          track.style.animationPlayState = 'paused';
+        } else {
+          track.style.animationPlayState = 'running';
+        }
+      }
+    });
+    
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          } else {
+            entry.target.style.animationPlayState = 'paused';
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      observer.observe(track);
+    }
+  })();
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Reviews",
+    "tag": "section",
+    "class": "trust-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "1. Content options"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Trusted by [highlight]100,000+ travelers[/highlight] worldwide",
+        "info": "Use [highlight]text[/highlight] to highlight text in blue"
+      },
+      {
+        "type": "text",
+        "id": "rating",
+        "label": "Rating",
+        "default": "4.6/5"
+      },
+      {
+        "type": "text",
+        "id": "badge_text",
+        "label": "Badge Text",
+        "default": "Excellent"
+      },
+      {
+        "type": "text",
+        "id": "verified_text",
+        "label": "Verified Text",
+        "default": "Verified Reviews"
+      },
+      {
+        "type": "header",
+        "content": "2. Design options"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "default": "t4s-container-fluid",
+        "label": "Layout",
+        "options": [
+          { "value": "t4s-se-container", "label": "Container"},
+          { "value": "t4s-container-wrap", "label": "Wrapped container"},
+          { "value": "t4s-container-fluid", "label": "Full width"}
+        ]
+      },
+      {
+        "type": "color",
+        "id": "cl_bg",
+        "label": "Background"
+      },
+      {
+        "type": "color_background",
+        "id": "cl_bg_gradient",
+        "label": "Background gradient"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_bg",
+        "label": "Background image"
+      },
+      {
+        "type": "text",
+        "id": "mg",
+        "label": "Margin",
+        "info": "Margin top, margin right, margin bottom, margin left. If you not use to blank",
+        "placeholder": ",,50px,"
+      },
+      {
+        "type": "text",
+        "id": "pd",
+        "label": "Padding",
+        "info": "Padding top, padding right, padding bottom, padding left. If you not use to blank",
+        "placeholder": "50px,,50px,"
+      },
+      {
+        "type": "header",
+        "content": "+ Design Tablet Options"
+      },
+      {
+        "type": "text",
+        "id": "mg_tb",
+        "label": "Margin",
+        "placeholder": ",,50px,"
+      },
+      {
+        "type": "text",
+        "id": "pd_tb",
+        "label": "Padding",
+        "placeholder": ",,50px,"
+      },
+      {
+        "type": "header",
+        "content": "+ Design mobile options"
+      },
+      {
+        "type": "text",
+        "id": "mg_mb",
+        "label": "Margin",
+        "default": ",,30px,",
+        "placeholder": ",,50px,"
+      },
+      {
+        "type": "text",
+        "id": "pd_mb",
+        "label": "Padding",
+        "placeholder": ",,50px,"
+      },
+      {
+        "type": "header",
+        "content": "3. Custom css"
+      },
+      {
+        "id": "use_cus_css",
+        "type": "checkbox",
+        "label": "Use custom css",
+        "default": false,
+        "info": "If you want custom style for this section."
+      },
+      {
+        "id": "code_cus_css",
+        "type": "textarea",
+        "label": "Code custom css",
+        "info": "Use selector .SectionID to style css"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "review",
+        "name": "Review",
+        "settings": [
+          {
+            "type": "text",
+            "id": "author_name",
+            "label": "Author Name",
+            "default": "Sarah M."
+          },
+          {
+            "type": "text",
+            "id": "avatar_initials",
+            "label": "Avatar Initials",
+            "default": "SM",
+            "info": "Leave blank to auto-generate from name"
+          },
+          {
+            "type": "text",
+            "id": "country",
+            "label": "Country",
+            "default": "Germany"
+          },
+          {
+            "type": "text",
+            "id": "country_flag",
+            "label": "Country Flag Emoji",
+            "default": "🇩🇪",
+            "info": "Enter flag emoji (e.g., 🇩🇪)"
+          },
+          {
+            "type": "range",
+            "id": "rating",
+            "label": "Rating",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "default": 5
+          },
+          {
+            "type": "textarea",
+            "id": "review_text",
+            "label": "Review Text",
+            "default": "Super easy activation! Was online in Turkey within 2 minutes. Much cheaper than roaming."
+          },
+          {
+            "type": "text",
+            "id": "review_date",
+            "label": "Review Date",
+            "default": "3 days ago"
+          },
+          {
+            "type": "checkbox",
+            "id": "verified",
+            "label": "Show Verified Badge",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Reviews",
+        "blocks": [
+          {
+            "type": "review",
+            "settings": {
+              "author_name": "Sarah M.",
+              "country": "Germany",
+              "country_flag": "🇩🇪",
+              "rating": 5,
+              "review_text": "Super easy activation! Was online in Turkey within 2 minutes. Much cheaper than roaming.",
+              "review_date": "3 days ago"
+            }
+          },
+          {
+            "type": "review",
+            "settings": {
+              "author_name": "John D.",
+              "country": "USA",
+              "country_flag": "🇺🇸",
+              "rating": 5,
+              "review_text": "Best eSIM provider! Much cheaper than my carrier. Had great speeds in Japan.",
+              "review_date": "1 week ago"
+            }
+          },
+          {
+            "type": "review",
+            "settings": {
+              "author_name": "Maria K.",
+              "country": "Spain",
+              "country_flag": "🇪🇸",
+              "rating": 4,
+              "review_text": "Perfect for my business trips! Reliable connection in 15+ countries so far.",
+              "review_date": "2 weeks ago"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
