@@ -326,16 +326,9 @@
         z-index: 1;
       }
       
-      /* Ensure the background extends fully (pure white) */
+      /* Single hero background: no separate header strip (::before hidden) */
       main.main-wrapper > section.bg-cream-secondary:first-child::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 120px;
-        background-color: #ffffff;
-        z-index: -1;
+        display: none !important;
       }
       
       @media (max-width: 640px) {
@@ -349,7 +342,7 @@
         }
         
         main.main-wrapper > section.bg-cream-secondary:first-child::before {
-          height: 88px;
+          display: none !important;
         }
       }
       
@@ -361,6 +354,10 @@
       /* Hero star icon color (next to "For brands spending over €50k/month on META ads.") */
       main.main-wrapper > section.bg-cream-secondary:first-child .u-vflex-center-top > .u-hflex-left-center:first-child .star-icon {
         color: #075238;
+      }
+      /* Hero main headline: black */
+      main.main-wrapper > section.bg-cream-secondary:first-child h1.heading-style-h1 {
+        color: #000000 !important;
       }
       
       /* Reduce extra space between hero and "Our Process" section */
@@ -545,6 +542,10 @@
   .padding-section-medium {
     background-color: #ffffff !important;
     background: #ffffff !important;
+  }
+  /* Hero section: no background image; decorative shape in cream (#FFFAD2) under text */
+  main.main-wrapper > section.bg-cream-secondary:first-child .bg-wrap path {
+    stroke: #FFFAD2 !important;
   }
 
   /* Make text look crisper and more legible in all browsers */
