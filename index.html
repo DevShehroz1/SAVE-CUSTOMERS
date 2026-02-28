@@ -4,6 +4,18 @@
   <style>
     #faq-section .accordion_1cms_list { gap: 1.25rem; }
     #faq-section .container > .u-vflex-center-top:first-child { margin-bottom: 1.5rem; }
+    /* Force accordion/collapse tabs to white - remove yellow */
+    .accordion_1_cms_item,
+    .accordion_1_component,
+    .accordion_1_toggle_button,
+    .accordion_1_toggle_heading,
+    .accordion_1_content_wrap,
+    .accordion_1_content_padding,
+    .accordion_1_cms_item.is-homework,
+    .accordion_1_component.is-homework {
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+    }
   </style>
 
   <!-- WEGLOT -->
@@ -219,45 +231,172 @@
         box-shadow: 0 6px 12px rgba(0, 71, 46, 0.25);
       }
       
+      /* Hamburger button - hidden on desktop */
+      .sc-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        width: 36px;
+        height: 36px;
+      }
+      .sc-hamburger span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+
+      /* Mobile drawer & overlay - hidden on desktop */
+      .sc-mobile-drawer,
+      .sc-drawer-overlay {
+        display: none;
+      }
+
       /* Mobile layout for header pill */
       @media (max-width: 640px) {
         .sc-header-outer {
           top: 16px;
-          padding: 0;
+          padding: 0 16px;
         }
 
         .sc-header {
-          max-width: 340px;
-          height: 46px;
-          padding: 0 18px;
+          max-width: 100%;
+          height: 50px;
+          padding: 0 16px;
         }
 
         .sc-logo {
-          height: 16px;
+          height: 20px;
         }
 
         .sc-nav {
-          gap: 12px;
-          font-size: 14px;
+          display: none !important;
         }
 
-        /* Only show Cs Tools in mobile nav */
-        .sc-nav a {
-          display: none;
-        }
-
-        .sc-nav a:nth-child(2) {
+        .sc-header-right .sc-cta {
           display: inline-block;
-        }
-
-        .sc-cta {
           padding: 6px 12px;
           font-size: 13px;
           box-shadow: 0 6px 14px rgba(0, 71, 46, 0.25);
         }
+
+        .sc-hamburger {
+          display: flex;
+        }
+
+        /* Mobile drawer */
+        .sc-mobile-drawer {
+          display: block;
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 320px;
+          height: 100vh;
+          background: #ffffff;
+          z-index: 999;
+          transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          padding: 0;
+          box-sizing: border-box;
+          box-shadow: -8px 0 30px rgba(0, 0, 0, 0.12);
+          overflow-y: auto;
+        }
+        .sc-mobile-drawer.is-open {
+          right: 0;
+        }
+
+        .sc-drawer-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 24px;
+          border-bottom: 1px solid rgba(0, 71, 52, 0.08);
+        }
+        .sc-drawer-header img {
+          height: 22px;
+        }
+
+        .sc-drawer-nav {
+          display: flex;
+          flex-direction: column;
+          padding: 12px 0;
+        }
+        .sc-drawer-nav a {
+          color: #004734;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 16px 24px;
+          transition: background 0.2s;
+          border-left: 3px solid transparent;
+        }
+        .sc-drawer-nav a:hover,
+        .sc-drawer-nav a:active {
+          background: rgba(193, 247, 201, 0.35);
+          border-left-color: #004734;
+        }
+        .sc-drawer-cta {
+          margin: 8px 24px 0;
+          width: calc(100% - 48px);
+          text-align: center;
+          padding: 14px 20px;
+          font-size: 15px;
+          border-radius: 10px;
+          color: #ffffff !important;
+        }
+
+        .sc-drawer-overlay {
+          display: block;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 47, 34, 0.35);
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+          z-index: 998;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+        .sc-drawer-overlay.is-open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .sc-drawer-close {
+          position: relative;
+          top: auto;
+          right: auto;
+          background: rgba(0, 71, 52, 0.06);
+          border: none;
+          color: #004734;
+          font-size: 18px;
+          cursor: pointer;
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.2s;
+        }
+        .sc-drawer-close:hover {
+          background: rgba(0, 71, 52, 0.12);
+        }
       }
       
       /* Trust section (reviews) - header gradient background */
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
       .trust-section {
         width: 100%;
@@ -272,13 +411,13 @@
       .trust-title-highlight { color: rgba(255,255,255,0.95); }
       .trust-stats { display: inline-flex; align-items: center; gap: 32px; padding: 20px 40px; background: rgba(255,255,255,0.15); border-radius: 10px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.25); }
       .trust-rating { display: flex; align-items: center; gap: 16px; }
-      .trust-score { font-size: 36px; font-weight: 700; color: #ffffff; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-score { font-size: 36px; font-weight: 700; color: #ffffff; font-family: 'Inter', system-ui, sans-serif; }
       .trust-stars { display: flex; gap: 3px; }
       .trust-star { width: 28px; height: 28px; color: rgba(255,255,255,0.9); }
       .trust-star svg { width: 100%; height: 100%; fill: currentColor; }
       .trust-badge { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: rgba(255,255,255,0.15); border-radius: 10px; border: 1px solid rgba(255,255,255,0.25); }
-      .trust-badge-logo { font-weight: 600; font-size: 16px; color: #ffffff; font-family: 'Poppins', system-ui, sans-serif; }
-      .trust-badge-text { font-size: 13px; color: rgba(255,255,255,0.85); border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px; margin-left: 4px; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-badge-logo { font-weight: 600; font-size: 16px; color: #ffffff; font-family: 'Inter', system-ui, sans-serif; }
+      .trust-badge-text { font-size: 13px; color: rgba(255,255,255,0.85); border-left: 1px solid rgba(255,255,255,0.3); padding-left: 12px; margin-left: 4px; font-family: 'Inter', system-ui, sans-serif; }
       .trust-carousel-wrapper { position: relative; width: 100%; overflow: hidden; margin-top: 60px; }
       .trust-carousel-mask { position: relative; overflow: hidden; width: 100%; padding: 4px 0; }
       .trust-carousel-mask::before, .trust-carousel-mask::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
@@ -292,17 +431,17 @@
       .trust-review:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
       .trust-review-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
       .trust-review-author { display: flex; align-items: center; gap: 14px; }
-      .trust-review-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,71,52,0.15), rgba(71,191,93,0.2)); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #004734; flex-shrink: 0; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-review-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,71,52,0.15), rgba(71,191,93,0.2)); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: #004734; flex-shrink: 0; font-family: 'Inter', system-ui, sans-serif; }
       .trust-review-info { display: flex; flex-direction: column; gap: 3px; }
-      .trust-review-name { font-size: 15px; font-weight: 600; color: #000000; font-family: 'Poppins', system-ui, sans-serif; }
-      .trust-review-country { font-size: 13px; color: #6B7280; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-review-name { font-size: 15px; font-weight: 600; color: #000000; font-family: 'Inter', system-ui, sans-serif; }
+      .trust-review-country { font-size: 13px; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; }
       .trust-review-rating { display: flex; gap: 2px; margin-bottom: 12px; }
       .trust-review-star { width: 19px; height: 19px; color: #47bf5d; }
       .trust-review-star svg { width: 100%; height: 100%; fill: currentColor; }
-      .trust-review-text { font-size: 14px; line-height: 1.6; color: #374151; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; min-height: 64px; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-review-text { font-size: 14px; line-height: 1.6; color: #374151; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; min-height: 64px; font-family: 'Inter', system-ui, sans-serif; }
       .trust-review-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid #E5E7EB; }
-      .trust-review-date { font-size: 12px; color: #6B7280; font-family: 'Poppins', system-ui, sans-serif; }
-      .trust-review-helpful { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6B7280; font-family: 'Poppins', system-ui, sans-serif; }
+      .trust-review-date { font-size: 12px; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; }
+      .trust-review-helpful { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6B7280; font-family: 'Inter', system-ui, sans-serif; }
       @media (max-width: 768px) { .trust-section { padding: 60px 16px; } .trust-review { flex: 0 0 300px; } .trust-carousel-mask::before, .trust-carousel-mask::after { width: 40px; } }
       @media (max-width: 480px) { .trust-review { flex: 0 0 280px; padding: 20px; } .trust-review-text { -webkit-line-clamp: 3; min-height: 60px; } }
       @media (prefers-reduced-motion: reduce) { .trust-carousel-track { animation: none; } }
@@ -318,17 +457,104 @@
         padding-top: 80px;
       }
       
-      /* Extend hero section background upward to cover white space under header */
+      /* Hero banner: background image + left-aligned text */
       main.main-wrapper > section.bg-cream-secondary:first-child {
         margin-top: -120px;
         padding-top: 120px;
         position: relative;
         z-index: 1;
+        background-image: url('https://cdn.shopify.com/s/files/1/0653/3372/3209/files/Website_BG_Image_-_1.png?v=1769075855') !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+        background-repeat: no-repeat !important;
+        background-color: transparent !important;
+        min-height: 90vh;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .bg-wrap {
+        display: none !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .padding-global,
+      main.main-wrapper > section.bg-cream-secondary:first-child .padding-section-medium,
+      main.main-wrapper > section.bg-cream-secondary:first-child .container,
+      main.main-wrapper > section.bg-cream-secondary:first-child .container.z-index-2 {
+        background: transparent !important;
+        background-color: transparent !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .padding-global {
+        position: relative !important;
+        z-index: 1 !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .u-vflex-center-top {
+        align-items: flex-start !important;
+        text-align: left !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .max-width-xxlarge,
+      main.main-wrapper > section.bg-cream-secondary:first-child .max-width-medium {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .button-group {
+        align-items: flex-start !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .button-group-buttons {
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .sc-hero-microcopy {
+        text-align: left !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .button.w-button,
+      main.main-wrapper > section.bg-cream-secondary:first-child a.button.w-button {
+        background-color: #c1f7c9 !important;
+        background-image: none !important;
+        color: #004734 !important;
+        border: 2px solid #c1f7c9 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        border-color: #c1f7c9 !important;
+        border-radius: 6px !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+        padding: 12px 32px !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1) !important;
+        justify-content: center !important;
+        gap: 8px !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .button.is-secondary.w-button,
+      main.main-wrapper > section.bg-cream-secondary:first-child a.button.is-secondary.w-button {
+        background-color: transparent !important;
+        background-image: none !important;
+        color: #004734 !important;
+        border: 2px solid #004734 !important;
+        border-radius: 6px !important;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+      main.main-wrapper > section.bg-cream-secondary:first-child .button.w-button *,
+      main.main-wrapper > section.bg-cream-secondary:first-child a.button.w-button * {
+        color: #004734 !important;
       }
       
-      /* Single hero background: no separate header strip (::before hidden) */
+      /* White gradient overlay: heavier on left (text), lighter on right (image shows) */
       main.main-wrapper > section.bg-cream-secondary:first-child::before {
-        display: none !important;
+        content: '' !important;
+        display: block !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0.85) 0%,
+          rgba(255, 255, 255, 0.7) 40%,
+          rgba(255, 255, 255, 0.4) 70%,
+          rgba(255, 255, 255, 0.15) 100%
+        ) !important;
+        z-index: 0 !important;
+        pointer-events: none !important;
       }
       
       @media (max-width: 640px) {
@@ -339,10 +565,51 @@
         main.main-wrapper > section.bg-cream-secondary:first-child {
           margin-top: -88px;
           padding-top: 88px;
+          min-height: 70vh;
         }
         
         main.main-wrapper > section.bg-cream-secondary:first-child::before {
-          display: none !important;
+          background: rgba(255, 255, 255, 0.82) !important;
+        }
+
+        main.main-wrapper > section.bg-cream-secondary:first-child .u-vflex-center-top {
+          align-items: center !important;
+          text-align: center !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .max-width-xxlarge,
+        main.main-wrapper > section.bg-cream-secondary:first-child .max-width-medium {
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child h1.heading-style-h1,
+        main.main-wrapper > section.bg-cream-secondary:first-child .heading-style-h1,
+        section.bg-cream-secondary h1.heading-style-h1,
+        h1.heading-style-h1 {
+          font-size: 1.35rem !important;
+          line-height: 1.2 !important;
+          text-align: center !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .text-size-regular {
+          text-align: center !important;
+          font-size: 0.95rem !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .button-group {
+          align-items: center !important;
+          width: 100% !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .button-group-buttons {
+          justify-content: center !important;
+          flex-direction: column !important;
+          width: 100% !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .button.w-button,
+        main.main-wrapper > section.bg-cream-secondary:first-child a.button.w-button {
+          width: 100% !important;
+          text-align: center !important;
+          justify-content: center !important;
+        }
+        main.main-wrapper > section.bg-cream-secondary:first-child .sc-hero-microcopy {
+          text-align: center !important;
         }
       }
       
@@ -351,13 +618,22 @@
         margin-top: -15px;
       }
       
-      /* Hero star icon color (next to "For brands spending over €50k/month on META ads.") */
-      main.main-wrapper > section.bg-cream-secondary:first-child .u-vflex-center-top > .u-hflex-left-center:first-child .star-icon {
-        color: #075238;
+      /* All star icons: #075238 */
+      .star-icon {
+        color: #075238 !important;
       }
-      /* Hero main headline: black */
+      /* Hero main headline */
       main.main-wrapper > section.bg-cream-secondary:first-child h1.heading-style-h1 {
-        color: #000000 !important;
+        color: #004734 !important;
+        font-size: 3.5rem !important;
+        line-height: 1.1 !important;
+        font-weight: 800 !important;
+      }
+      @media (max-width: 640px) {
+        main.main-wrapper > section.bg-cream-secondary:first-child h1.heading-style-h1 {
+          font-size: 2.5rem !important;
+          line-height: 1.2 !important;
+        }
       }
       
       /* Reduce extra space between hero and "Our Process" section */
@@ -385,7 +661,7 @@
       *[style*="color:#57C46A"],
       *[style*="color: #57C46A"],
       *[style*="color:#57C46A"] {
-        color: #57C46A !important;
+        color: #004734 !important;
       }
       
       /* Replace #004734 with #004734 */
@@ -514,23 +790,42 @@
       <header class="sc-header">
         <div class="sc-header-left">
           <img
-            src="https://cdn.shopify.com/s/files/1/0653/3372/3209/files/Logo_Wide_-_SaveCustomer_-_3.png?v=1770662627"
+            src="https://cdn.shopify.com/s/files/1/0653/3372/3209/files/Logo_SC_-_White_-_2.png?v=1772307081"
             alt="SaveCustomer"
             class="sc-logo"
           />
         </div>
         <nav class="sc-nav" aria-label="Main navigation">
           <a href="#home">Home</a>
-          <a href="#cs-tools">Cs Tools</a>
-          <a href="#helpful-content">Helpfull Content</a>
+          <a href="#free-resources">Free Resources</a>
+          <a href="#contact">Contact</a>
         </nav>
         <div class="sc-header-right">
           <button class="sc-cta" type="button">Book a Meeting</button>
+          <button class="sc-hamburger" type="button" aria-label="Open menu" onclick="document.getElementById('sc-mobile-drawer').classList.toggle('is-open');document.getElementById('sc-drawer-overlay').classList.toggle('is-open')">
+            <span></span><span></span><span></span>
+          </button>
         </div>
       </header>
+      <div id="sc-drawer-overlay" class="sc-drawer-overlay" onclick="document.getElementById('sc-mobile-drawer').classList.remove('is-open');this.classList.remove('is-open')"></div>
+      <div id="sc-mobile-drawer" class="sc-mobile-drawer">
+        <div class="sc-drawer-header">
+          <img src="https://cdn.shopify.com/s/files/1/0653/3372/3209/files/Logo_Wide_-_SaveCustomer_-_3.png?v=1770662627" alt="SaveCustomer" />
+          <button class="sc-drawer-close" type="button" aria-label="Close menu" onclick="document.getElementById('sc-mobile-drawer').classList.remove('is-open');document.getElementById('sc-drawer-overlay').classList.remove('is-open')">&#10005;</button>
+        </div>
+        <nav class="sc-drawer-nav">
+          <a href="#home" onclick="document.getElementById('sc-mobile-drawer').classList.remove('is-open');document.getElementById('sc-drawer-overlay').classList.remove('is-open')">Home</a>
+          <a href="#free-resources" onclick="document.getElementById('sc-mobile-drawer').classList.remove('is-open');document.getElementById('sc-drawer-overlay').classList.remove('is-open')">Free Resources</a>
+          <a href="#contact" onclick="document.getElementById('sc-mobile-drawer').classList.remove('is-open');document.getElementById('sc-drawer-overlay').classList.remove('is-open')">Contact</a>
+          <button class="sc-cta sc-drawer-cta" type="button">Book a Meeting</button>
+        </nav>
+      </div>
     </div>
 <div class="page-wrapper"><div class="global-styles w-embed"><style>
   
+  /* Global Inter font */
+  html, body, * { font-family: 'Inter', system-ui, -apple-system, sans-serif !important; }
+
   /* Page background and all cream sections forced to pure white */
   html, body, .page-wrapper, .main-wrapper { background-color: #ffffff !important; }
   .section.bg-cream,
@@ -543,9 +838,37 @@
     background-color: #ffffff !important;
     background: #ffffff !important;
   }
-  /* Hero section: no background image; decorative shape in cream (#FFFAD2) under text */
-  main.main-wrapper > section.bg-cream-secondary:first-child .bg-wrap path {
-    stroke: #FFFAD2 !important;
+  /* Hero section: override white background to show background image */
+  main.main-wrapper > section.bg-cream-secondary:first-child {
+    background: url('https://cdn.shopify.com/s/files/1/0653/3372/3209/files/Website_BG_Image_-_1.png?v=1769075855') center bottom / cover no-repeat !important;
+  }
+  main.main-wrapper > section.bg-cream-secondary:first-child .padding-global,
+  main.main-wrapper > section.bg-cream-secondary:first-child .padding-section-medium,
+  main.main-wrapper > section.bg-cream-secondary:first-child .container {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  /* Dark cards/tabs to light green #C1F6C1 */
+  .card,
+  .process-card,
+  .process-card.is-center {
+    background-color: #C1F6C1 !important;
+    background-image: none !important;
+    color: #004734 !important;
+  }
+  .card *,
+  .process-card *,
+  .process-card.is-center * {
+    color: #004734 !important;
+  }
+  .card .text-style-link,
+  .process-card .text-style-link {
+    color: #004734 !important;
+  }
+
+  /* Hero section: hide old decorative SVG wave */
+  main.main-wrapper > section.bg-cream-secondary:first-child .bg-wrap {
+    display: none !important;
   }
 
   /* Make text look crisper and more legible in all browsers */
@@ -724,11 +1047,76 @@
   }
   
   .process-results ul {
-    list-style-position: inside;
-    padding-left: 0;
-    text-align: center;
+    list-style-position: outside;
+    padding-left: 1.2rem;
+    text-align: left;
+  }
+
+  .process-card .u-vflex-center-center,
+  .process-card.is-center .u-vflex-center-center {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  .process-card .paragraph.small,
+  .process-card.is-center .paragraph.small {
+    text-align: left !important;
+  }
+  .process-card .heading-style-h5,
+  .process-card.is-center .heading-style-h5 {
+    text-align: left !important;
+  }
+  .process-card .process-results,
+  .process-card.is-center .process-results {
+    text-align: left !important;
+  }
+  .process-card .process-results p,
+  .process-card.is-center .process-results p {
+    text-align: left !important;
   }
   
+  /* Process cards: aligned rows with subgrid */
+  .process-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .process-card,
+  .process-card.is-center {
+    display: grid !important;
+    grid-template-rows: subgrid !important;
+    grid-row: span 3 !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    border: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  .process-card .u-vflex-center-center {
+    gap: 1rem !important;
+  }
+  .process-card .divider.is-static.is-process-results {
+    width: 100% !important;
+    height: 2px !important;
+    min-height: 2px !important;
+    background-color: #004734 !important;
+    border-color: #004734 !important;
+    border: none !important;
+    align-self: center !important;
+  }
+
+  @media (max-width: 640px) {
+    .process-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .process-card,
+    .process-card.is-center {
+      grid-row: span 3 !important;
+    }
+  }
+
   /* Process section icons: theme green */
   .process-grid .process-icon {
     color: #004734;
@@ -747,7 +1135,7 @@
     fill: currentColor;
   }
   
-  </style></div><main class="main-wrapper"><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container z-index-2"><div class="u-vflex-center-top u-gap-6 text-align-center"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">For brands spending over €50k/month on META ads.</div></div><div class="max-width-xxlarge"><h1 class="heading-style-h1">Your Customers Want Help. You Need Profit Protection. We do both, and more!</h1></div><div class="max-width-medium"><p class="text-size-regular">E-Com Support improvements with a superb revenue support system, in metrics founders care about: refund rate, CSAT, repeat rate, and saved revenue. We are actually Revenue Partners, Not just a CS provider.</p></div><div class="button-group"><div class="button-group-buttons"><a href="/demo-call" target="_blank" class="button w-button savecustomer-primary-cta">Do the Revenue Leak Audit</a><a href="/portfolio" class="button is-secondary w-button">Free Ecom CS Playbook</a></div><div class="sc-hero-microcopy">3 minutes. Get a score, your biggest leaks, and a 7 day fix plan.</div></div></div></div><div class="bg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1440 784" fill="none" preserveAspectRatio="none" class="g_svg"><path d="M-274 701.1C-259.446 557.242 -179.341 416.541 -46.7971 301.968C39.5289 227.36 262.454 68.6397 393.388 199.653C454.493 260.793 454.771 483.075 476.158 534.709C516.099 631.043 684.752 623.923 799.797 577.5C955.451 514.709 993.169 406.082 1036.83 297.491C1056.66 248.168 1067.5 194.956 1042.5 146.624C1017.5 98.3287 948.118 57.0797 871.013 60.1624C772.411 64.0524 707.083 142.036 733.859 204.827C760.634 267.618 855.181 310.042 952.395 321.492C1033.83 331.07 1120.66 323.106 1197.15 343.951C1343.25 383.769 1384.75 499.516 1450.91 583.555C1500.02 645.906 1572.9 706.642 1676 724" stroke="#ffffff" stroke-width="120" stroke-miterlimit="10" stroke-linecap="round"></path></svg></div></section><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container"><div class="u-vflex-center-top u-gap-8 text-align-center"><div class="u-vflex-center-top u-gap-4"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">Our Process</div></div><div class="max-width-medium align-center"><h2 class="heading-style-h3">Support run like a <span class="text-pink-badge">revenue system</span></h2></div><div class="max-width-large align-center"><p class="paragraph">Three phases. One accountable system. Built for retention and LTV growth.</p></div></div><div class="u-grid-column-3 width-full process-grid"><div class="process-card"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 37 40" fill="none" class="g_svg"><path d="M6.66675 4V12H30.6667V4H34.6799C35.7771 4 36.6667 4.8899 36.6667 5.9868V38.0132C36.6667 39.1104 35.7769 40 34.6799 40H2.65355C1.55627 40 0.666748 39.1102 0.666748 38.0132V5.9868C0.666748 4.88952 1.55665 4 2.65355 4H6.66675ZM12.6667 30H8.66675V34H12.6667V30ZM12.6667 24H8.66675V28H12.6667V24ZM12.6667 18H8.66675V22H12.6667V18ZM26.6667 0V8H10.6667V0H26.6667Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">01. Foundation</h2><p class="paragraph small">We map your policies, brand voice, and revenue leaks, then set up your helpdesk so every reply has context and guardrails.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><p><strong>Deliverables</strong></p><ul role="list"><li>Brand voice sheet for support</li><li>Refund and exchange decision tree</li><li>Tagging and attribution rules</li><li>Human sounding macros and templates</li><li>Escalation paths for payment, legal, public complaints</li></ul></div></div><div class="process-card is-center"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 40 40" fill="none" class="g_svg"><path d="M33.4268 14.2562L32.9336 15.3876C32.5728 16.2158 31.4272 16.2158 31.0662 15.3876L30.5732 14.2562C29.6942 12.2389 28.111 10.6328 26.1354 9.75416L24.616 9.07844C23.7946 8.71306 23.7946 7.51762 24.616 7.15224L26.0504 6.51428C28.0768 5.61302 29.6884 3.94746 30.5522 1.86166L31.0586 0.639062C31.4116 -0.213021 32.5884 -0.213021 32.9412 0.639062L33.4476 1.86166C34.3116 3.94746 35.9232 5.61302 37.9496 6.51428L39.3838 7.15224C40.2054 7.51762 40.2054 8.71306 39.3838 9.07844L37.8646 9.75416C35.889 10.6328 34.3058 12.2389 33.4268 14.2562ZM32 20C33.4026 20 34.7488 19.7594 36 19.3172V38.0132C36 39.1104 35.1102 40 34.0132 40H1.9868C0.88952 40 0 39.1102 0 38.0132V5.9868C0 4.88952 0.8899 4 1.9868 4H20.6828C20.2406 5.25112 20 6.59746 20 8C20 14.6274 25.3726 20 32 20ZM15.2438 14.8292C15.1124 14.7416 14.958 14.6948 14.8 14.6948C14.3582 14.6948 14 15.053 14 15.4948V28.5052C14 28.6632 14.0468 28.8176 14.1344 28.949C14.3794 29.3166 14.8762 29.416 15.2438 29.1708L25.0016 22.6656C25.0894 22.607 25.1648 22.5316 25.2234 22.4438C25.4686 22.0762 25.3692 21.5794 25.0016 21.3344L15.2438 14.8292Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">02. Daily ops</h2><p class="paragraph small">Real humans reply to every message, every day, inside your helpdesk.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><p><strong>What this includes</strong></p><ul role="list"><li>Pre purchase questions that close more shoppers</li><li>Refund and return conversations</li><li>Complaint handling that prevents chargebacks &amp; negative reviews</li></ul></div></div><div class="process-card"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 40" fill="none" class="g_svg"><path d="M20.3333 0C31.3789 0 40.3333 8.9543 40.3333 20C40.3333 31.0456 31.3789 40 20.3333 40C9.28755 40 0.333252 31.0456 0.333252 20C0.333252 8.9543 9.28755 0 20.3333 0ZM20.3333 6C12.6013 6 6.33325 12.268 6.33325 20C6.33325 23.705 7.77239 27.0736 10.1222 29.5778L10.4338 29.8994L13.2622 27.071C11.4525 25.2614 10.3333 22.7614 10.3333 20C10.3333 14.4772 14.8104 10 20.3333 10C21.2293 10 22.0977 10.1178 22.9241 10.3389L26.0491 7.21612C24.3037 6.43462 22.3693 6 20.3333 6ZM33.1181 14.2862L29.9945 17.4092C30.2155 18.2356 30.3333 19.104 30.3333 20C30.3333 22.7614 29.2141 25.2614 27.4043 27.071L30.2327 29.8994C32.7663 27.366 34.3333 23.866 34.3333 20C34.3333 17.9648 33.8991 16.031 33.1181 14.2862ZM28.8185 8.6863L21.3673 16.135C21.0375 16.047 20.6909 16 20.3333 16C18.1241 16 16.3333 17.7908 16.3333 20C16.3333 22.2092 18.1241 24 20.3333 24C22.5425 24 24.3333 22.2092 24.3333 20C24.3333 19.6424 24.2863 19.2958 24.1983 18.966L31.6471 11.5147L28.8185 8.6863Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">03. Optimization loop</h2><p class="paragraph small">Every week we review performance and upgrade the next batch of replies.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><p><strong>What you see</strong></p><ul role="list"><li>Weekly performance report</li><li>Monthly review call</li><li>Updated scripts and templates based on what is working</li></ul></div></div></div><div class="button-group"><a href="/demo-call" target="_blank" class="button w-button">Schedule a Strategy Call</a></div></div></div></div></section><section class="section bg-cream"><div class="padding-global padding-section-medium"><div class="container"><div class="layout_main_grid"><div class="layout_main_content height-full position-relative"><div class="u-vflex-stretch-top u-gap-4 sticky-top"><h2 class="heading-style-h3">Why are founders choosing <span class="text-pink-badge">revenue focused support</span> over traditional support?</h2><p class="paragraph">Dedicated humans, proven playbooks, and performance aligned pricing, built for EU Shopify brands that are tired of refunds and weak replies.</p></div></div><div class="layout_main_content height-full u-gap-4"><div data-open-by-default="false" data-close-previous="true" data-close-on-second-click="true" data-open-on-hover="false" class="accordion_1_cms_wrap-homework"><div class="accordion_1_css w-embed"><style>
+  </style></div><main class="main-wrapper"><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container z-index-2"><div class="u-vflex-center-top u-gap-6 text-align-center"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">For brands spending over €50k/month on META ads.</div></div><div class="max-width-xxlarge"><h1 class="heading-style-h1">Do you want to Save &amp; Increase your actual Customers?</h1></div><div class="max-width-medium"><p class="text-size-regular">We run E-com Support like a revenue stream for you. More Refund saves, Higher upsells, Higher win backs, Better reviews.</p></div><div class="button-group"><div class="button-group-buttons"><a href="/demo-call" target="_blank" class="button w-button savecustomer-primary-cta">Do the Revenue Leak Audit</a><a href="/portfolio" class="button is-secondary w-button">Free Ecom CS Playbook</a></div><div class="sc-hero-microcopy">3 minutes. Get a score, your biggest leaks, and a 7 day fix plan.</div></div></div></div><div class="bg-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 1440 784" fill="none" preserveAspectRatio="none" class="g_svg"><path d="M-274 701.1C-259.446 557.242 -179.341 416.541 -46.7971 301.968C39.5289 227.36 262.454 68.6397 393.388 199.653C454.493 260.793 454.771 483.075 476.158 534.709C516.099 631.043 684.752 623.923 799.797 577.5C955.451 514.709 993.169 406.082 1036.83 297.491C1056.66 248.168 1067.5 194.956 1042.5 146.624C1017.5 98.3287 948.118 57.0797 871.013 60.1624C772.411 64.0524 707.083 142.036 733.859 204.827C760.634 267.618 855.181 310.042 952.395 321.492C1033.83 331.07 1120.66 323.106 1197.15 343.951C1343.25 383.769 1384.75 499.516 1450.91 583.555C1500.02 645.906 1572.9 706.642 1676 724" stroke="#ffffff" stroke-width="120" stroke-miterlimit="10" stroke-linecap="round"></path></svg></div></section><section class="section bg-cream-secondary"><div class="padding-global padding-section-medium"><div class="container"><div class="u-vflex-center-top u-gap-8 text-align-center"><div class="u-vflex-center-top u-gap-4"><div class="u-hflex-left-center u-gap-4 mob-vertical-center"><div class="star-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 20 20" fill="none" class="g_svg"><path d="M4.58325 1.66683C4.58325 1.20659 4.21016 0.833496 3.74992 0.833496C3.28968 0.833496 2.91659 1.20659 2.91659 1.66683V2.91683H1.66659C1.20635 2.91683 0.833252 3.28993 0.833252 3.75016C0.833252 4.2104 1.20635 4.5835 1.66659 4.5835H2.91659V5.8335C2.91659 6.29373 3.28968 6.66683 3.74992 6.66683C4.21016 6.66683 4.58325 6.29373 4.58325 5.8335V4.5835H5.83325C6.29349 4.5835 6.66659 4.2104 6.66659 3.75016C6.66659 3.28993 6.29349 2.91683 5.83325 2.91683H4.58325V1.66683Z" fill="currentColor"></path><path d="M4.58325 14.1668C4.58325 13.7066 4.21016 13.3335 3.74992 13.3335C3.28968 13.3335 2.91659 13.7066 2.91659 14.1668V15.4168H1.66659C1.20635 15.4168 0.833252 15.7899 0.833252 16.2502C0.833252 16.7104 1.20635 17.0835 1.66659 17.0835H2.91659V18.3335C2.91659 18.7937 3.28968 19.1668 3.74992 19.1668C4.21016 19.1668 4.58325 18.7937 4.58325 18.3335V17.0835H5.83325C6.29349 17.0835 6.66659 16.7104 6.66659 16.2502C6.66659 15.7899 6.29349 15.4168 5.83325 15.4168H4.58325V14.1668Z" fill="currentColor"></path><path d="M11.611 2.20101C11.4873 1.87919 11.1781 1.66683 10.8333 1.66683C10.4884 1.66683 10.1792 1.87919 10.0555 2.20101L8.61032 5.9584C8.35998 6.60927 8.28132 6.79683 8.17371 6.94816C8.06575 7.1 7.93308 7.23266 7.78124 7.34062C7.62992 7.44823 7.44236 7.52689 6.79149 7.77723L3.0341 9.22237C2.71228 9.34616 2.49992 9.65535 2.49992 10.0002C2.49992 10.345 2.71228 10.6542 3.0341 10.778L6.79149 12.2231C7.44236 12.4734 7.62992 12.5521 7.78124 12.6597C7.93308 12.7677 8.06575 12.9003 8.17371 13.0522C8.28132 13.2035 8.35998 13.3911 8.61032 14.0419L10.0555 17.7993C10.1792 18.1211 10.4884 18.3335 10.8333 18.3335C11.1781 18.3335 11.4873 18.1211 11.611 17.7993L13.0562 14.0419C13.3065 13.3911 13.3852 13.2035 13.4928 13.0522C13.6008 12.9003 13.7334 12.7677 13.8853 12.6597C14.0366 12.5521 14.2241 12.4734 14.875 12.2231L18.6324 10.778C18.9542 10.6542 19.1666 10.345 19.1666 10.0002C19.1666 9.65535 18.9542 9.34616 18.6324 9.22237L14.875 7.77723C14.2241 7.52689 14.0366 7.44823 13.8853 7.34062C13.7334 7.23266 13.6008 7.1 13.4928 6.94816C13.3852 6.79683 13.3065 6.60927 13.0562 5.9584L11.611 2.20101Z" fill="currentColor"></path></svg></div><div class="paragraph">Our Process</div></div><div class="max-width-medium align-center"><h2 class="heading-style-h3">Support run like a <span class="text-pink-badge">revenue system</span></h2></div><div class="max-width-large align-center"><p class="paragraph">Three phases. One accountable system. Built for retention and LTV growth.</p></div></div><div class="u-grid-column-3 width-full process-grid"><div class="process-card"><div class="u-vflex-center-center u-gap-5"><div class="process-number">1</div><h2 class="heading-style-h5">Deep Dive</h2><p class="paragraph small">We map your policies, brand voice, top ticket reasons, and where revenue leaks happen.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><ul role="list"><li>Brand voice sheet for support</li><li>Refund and exchange decision tree</li><li>Tagging and attribution rules</li></ul></div></div><div class="process-card is-center"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 40 40" fill="none" class="g_svg"><path d="M33.4268 14.2562L32.9336 15.3876C32.5728 16.2158 31.4272 16.2158 31.0662 15.3876L30.5732 14.2562C29.6942 12.2389 28.111 10.6328 26.1354 9.75416L24.616 9.07844C23.7946 8.71306 23.7946 7.51762 24.616 7.15224L26.0504 6.51428C28.0768 5.61302 29.6884 3.94746 30.5522 1.86166L31.0586 0.639062C31.4116 -0.213021 32.5884 -0.213021 32.9412 0.639062L33.4476 1.86166C34.3116 3.94746 35.9232 5.61302 37.9496 6.51428L39.3838 7.15224C40.2054 7.51762 40.2054 8.71306 39.3838 9.07844L37.8646 9.75416C35.889 10.6328 34.3058 12.2389 33.4268 14.2562ZM32 20C33.4026 20 34.7488 19.7594 36 19.3172V38.0132C36 39.1104 35.1102 40 34.0132 40H1.9868C0.88952 40 0 39.1102 0 38.0132V5.9868C0 4.88952 0.8899 4 1.9868 4H20.6828C20.2406 5.25112 20 6.59746 20 8C20 14.6274 25.3726 20 32 20ZM15.2438 14.8292C15.1124 14.7416 14.958 14.6948 14.8 14.6948C14.3582 14.6948 14 15.053 14 15.4948V28.5052C14 28.6632 14.0468 28.8176 14.1344 28.949C14.3794 29.3166 14.8762 29.416 15.2438 29.1708L25.0016 22.6656C25.0894 22.607 25.1648 22.5316 25.2234 22.4438C25.4686 22.0762 25.3692 21.5794 25.0016 21.3344L15.2438 14.8292Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">Setup</h2><p class="paragraph small">We configure your helpdesk so agents have context and guardrails.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><ul role="list"><li>Macros and templates that sound human</li><li>Escalation paths for payment, legal, and public complaints</li><li>QA checklist and internal scorecard</li></ul></div></div><div class="process-card"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 40" fill="none" class="g_svg"><path d="M20.3333 0C31.3789 0 40.3333 8.9543 40.3333 20C40.3333 31.0456 31.3789 40 20.3333 40C9.28755 40 0.333252 31.0456 0.333252 20C0.333252 8.9543 9.28755 0 20.3333 0ZM20.3333 6C12.6013 6 6.33325 12.268 6.33325 20C6.33325 23.705 7.77239 27.0736 10.1222 29.5778L10.4338 29.8994L13.2622 27.071C11.4525 25.2614 10.3333 22.7614 10.3333 20C10.3333 14.4772 14.8104 10 20.3333 10C21.2293 10 22.0977 10.1178 22.9241 10.3389L26.0491 7.21612C24.3037 6.43462 22.3693 6 20.3333 6ZM33.1181 14.2862L29.9945 17.4092C30.2155 18.2356 30.3333 19.104 30.3333 20C30.3333 22.7614 29.2141 25.2614 27.4043 27.071L30.2327 29.8994C32.7663 27.366 34.3333 23.866 34.3333 20C34.3333 17.9648 33.8991 16.031 33.1181 14.2862ZM28.8185 8.6863L21.3673 16.135C21.0375 16.047 20.6909 16 20.3333 16C18.1241 16 16.3333 17.7908 16.3333 20C16.3333 22.2092 18.1241 24 20.3333 24C22.5425 24 24.3333 22.2092 24.3333 20C24.3333 19.6424 24.2863 19.2958 24.1983 18.966L31.6471 11.5147L28.8185 8.6863Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">Daily Ops</h2><p class="paragraph small">Real humans reply to every message, every day, inside your helpdesk.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><ul role="list"><li>Pre-purchase questions that get shoppers over the line</li><li>Return and refund conversations that convert to exchanges or store credit</li><li>Complaint handling that prevents chargebacks and negative reviews</li></ul></div></div><div class="process-card"><div class="u-vflex-center-center u-gap-5"><div class="process-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 41 40" fill="none" class="g_svg"><path d="M20.3333 0C31.3789 0 40.3333 8.9543 40.3333 20C40.3333 31.0456 31.3789 40 20.3333 40C9.28755 40 0.333252 31.0456 0.333252 20C0.333252 8.9543 9.28755 0 20.3333 0ZM20.3333 6C12.6013 6 6.33325 12.268 6.33325 20C6.33325 23.705 7.77239 27.0736 10.1222 29.5778L10.4338 29.8994L13.2622 27.071C11.4525 25.2614 10.3333 22.7614 10.3333 20C10.3333 14.4772 14.8104 10 20.3333 10C21.2293 10 22.0977 10.1178 22.9241 10.3389L26.0491 7.21612C24.3037 6.43462 22.3693 6 20.3333 6ZM33.1181 14.2862L29.9945 17.4092C30.2155 18.2356 30.3333 19.104 30.3333 20C30.3333 22.7614 29.2141 25.2614 27.4043 27.071L30.2327 29.8994C32.7663 27.366 34.3333 23.866 34.3333 20C34.3333 17.9648 33.8991 16.031 33.1181 14.2862ZM28.8185 8.6863L21.3673 16.135C21.0375 16.047 20.6909 16 20.3333 16C18.1241 16 16.3333 17.7908 16.3333 20C16.3333 22.2092 18.1241 24 20.3333 24C22.5425 24 24.3333 22.2092 24.3333 20C24.3333 19.6424 24.2863 19.2958 24.1983 18.966L31.6471 11.5147L28.8185 8.6863Z" fill="currentColor"></path></svg></div><h2 class="heading-style-h5">Measurement Loop</h2><p class="paragraph small">Every week we review what happened and improve the next batch of replies.</p></div><div class="divider is-static is-process-results"></div><div class="process-results w-richtext"><ul role="list"><li>Weekly performance report</li><li>Monthly review call</li><li>Updated scripts and templates based on what's working</li></ul></div></div></div><div class="button-group"><a href="/demo-call" target="_blank" class="button w-button">Schedule a Strategy Call</a></div></div></div></div></section><section class="section bg-cream"><div class="padding-global padding-section-medium"><div class="container"><div class="layout_main_grid"><div class="layout_main_content height-full position-relative"><div class="u-vflex-stretch-top u-gap-4 sticky-top"><h2 class="heading-style-h3">Why are founders choosing <span class="text-pink-badge">revenue focused support</span> over traditional support?</h2><p class="paragraph">Dedicated humans, proven playbooks, and performance aligned pricing, built for EU Shopify brands that are tired of refunds and weak replies.</p></div></div><div class="layout_main_content height-full u-gap-4"><div data-open-by-default="false" data-close-previous="true" data-close-on-second-click="true" data-open-on-hover="false" class="accordion_1_cms_wrap-homework"><div class="accordion_1_css w-embed"><style>
   .wf-design-mode .accordion_1_content_wrap {
     display: block;
   }
@@ -1027,4 +1415,12 @@
     })();
   </script>
   
+  <style>
+    @media (max-width: 640px) {
+      h1.heading-style-h1 {
+        font-size: 1.35rem !important;
+        line-height: 1.2 !important;
+      }
+    }
+  </style>
   </body></html>
