@@ -869,12 +869,11 @@
 
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          redirect: 'follow'
         })
         .then(function() { showSuccess(); })
-        .catch(function() { showSuccess(); }); // still show success — no-cors won't return readable response
+        .catch(function() { showSuccess(); });
       });
 
       function showSuccess() {
