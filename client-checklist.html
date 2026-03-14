@@ -546,7 +546,9 @@
           <div class="tf-option"><input type="radio" name="q4" id="q4b" value="Rs 1 Crore – 2 Crore"/><label for="q4b"><span class="tf-key">B</span><span class="tf-option-text">Rs 1 Crore – 2 Crore</span></label></div>
           <div class="tf-option"><input type="radio" name="q4" id="q4c" value="Rs 2 Crore – 4 Crore"/><label for="q4c"><span class="tf-key">C</span><span class="tf-option-text">Rs 2 Crore – 4 Crore</span></label></div>
           <div class="tf-option"><input type="radio" name="q4" id="q4d" value="Rs 4 Crore+"/><label for="q4d"><span class="tf-key">D</span><span class="tf-option-text">Rs 4 Crore+</span></label></div>
+          <div class="tf-option"><input type="radio" name="q4" id="q4e" value="Other"/><label for="q4e"><span class="tf-key">E</span><span class="tf-option-text">Other (specify below)</span></label></div>
         </div>
+        <input class="tf-input" type="text" id="q4other" placeholder="Enter your monthly ad spend..." style="margin-top:12px;display:none;"/>
       </div>
     </div>
 
@@ -640,7 +642,9 @@
           <div class="tf-option"><input type="radio" name="q10" id="q10b" value="Rs 80M – 1.5CR/month"/><label for="q10b"><span class="tf-key">B</span><span class="tf-option-text">Rs 80M – 1.5CR/month</span></label></div>
           <div class="tf-option"><input type="radio" name="q10" id="q10c" value="Rs 1.5CR – 3CR/month"/><label for="q10c"><span class="tf-key">C</span><span class="tf-option-text">Rs 1.5CR – 3CR/month</span></label></div>
           <div class="tf-option"><input type="radio" name="q10" id="q10d" value="No specific target, just consistent growth"/><label for="q10d"><span class="tf-key">D</span><span class="tf-option-text">No specific target, just consistent growth</span></label></div>
+          <div class="tf-option"><input type="radio" name="q10" id="q10e" value="Other"/><label for="q10e"><span class="tf-key">E</span><span class="tf-option-text">Other (specify below)</span></label></div>
         </div>
+        <input class="tf-input" type="text" id="q10other" placeholder="Enter your revenue target..." style="margin-top:12px;display:none;"/>
       </div>
     </div>
 
@@ -796,9 +800,39 @@
       goToSlide(current - 1);
     };
 
+    // Q4 "Other" toggle
+    var q4other = document.getElementById('q4other');
+    document.querySelectorAll('input[name="q4"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        if (this.id === 'q4e') {
+          q4other.style.display = 'block';
+          setTimeout(function() { q4other.focus(); }, 100);
+        } else {
+          q4other.style.display = 'none';
+          q4other.value = '';
+        }
+      });
+    });
+
+    // Q10 "Other" toggle
+    var q10other = document.getElementById('q10other');
+    document.querySelectorAll('input[name="q10"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        if (this.id === 'q10e') {
+          q10other.style.display = 'block';
+          setTimeout(function() { q10other.focus(); }, 100);
+        } else {
+          q10other.style.display = 'none';
+          q10other.value = '';
+        }
+      });
+    });
+
     // Auto-advance on radio select
     document.querySelectorAll('input[type="radio"]').forEach(function(r) {
       r.addEventListener('change', function() {
+        // Don't auto-advance if "Other" is selected
+        if (this.id === 'q4e' || this.id === 'q10e') return;
         setTimeout(function() { window.goNext(); }, 350);
       });
     });
@@ -856,6 +890,16 @@
       for (var i = 1; i <= 13; i++) {
         var checked = document.querySelector('input[name="q' + i + '"]:checked');
         data['q' + i] = checked ? checked.value : '';
+      }
+      // If Q4 is "Other", use the custom input value
+      if (data.q4 === 'Other') {
+        var custom4 = document.getElementById('q4other').value.trim();
+        data.q4 = custom4 ? 'Other: ' + custom4 : 'Other';
+      }
+      // If Q10 is "Other", use the custom input value
+      if (data.q10 === 'Other') {
+        var custom10 = document.getElementById('q10other').value.trim();
+        data.q10 = custom10 ? 'Other: ' + custom10 : 'Other';
       }
       data.q14 = (document.querySelector('textarea[name="q14"]').value || '').trim();
       data.q15 = (document.querySelector('input[name="q15"]').value || '').trim();
